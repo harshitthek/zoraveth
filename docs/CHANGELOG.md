@@ -1,5 +1,24 @@
 # Changelog
 
+## Phase 5.2 — Terrain Rework & Environment Composition (2026-10-19)
+- Overhauled Ground Rendering System in `res://scripts/world/isometric_ground.gd`:
+  - Replaced discrete diamond tile polygons with continuous seamless painterly forest floor canvas (`terrain_forest_floor.png`, $512 \times 512\text{ px}$) covering the entire $1800 \times 1000$ world, completely eliminating geometric seams and diamond borders.
+  - Implemented continuous, smooth multi-pass organic dirt trails with feathered transition borders, compacted beaten earth body, and central worn footway.
+  - Added embedded river pebbles and stepping stones along trails, organic meadow grass blade tufts, and a weathered stone flagstone apron around the ancient runestone.
+  - Kept script under `/usemax` constraints at 119 LOC (< 150 LOC).
+- Corrected Tree Root Pedestal Discs and Contact Shadows:
+  - Eliminated the tabletop figurine circular disc/pedestal baked into `tree_pine.png`, carving natural concave root flares that meet the soil organically.
+  - Replaced harsh diamond `Polygon2D` shadows with soft 12-point isometric ground contact shadows in `tree.tscn`, `tree_ancient.tscn`, `bush.tscn`, `pillar.tscn`, and `rock.tscn`.
+- Upgraded Props with Handcrafted Painterly Sprites:
+  - Generated high-resolution painterly `bush_forest.png` ($64 \times 52\text{ px}$) with layered foliage lobes, wild blueberries, and woody stems.
+  - Generated high-resolution painterly `pillar_ancient.png` ($44 \times 88\text{ px}$) with fluted basalt masonry, chipping, creeping moss, and glowing cyan rune fracture matching the runestone.
+  - Removed obsolete primitive placeholder rune polygon from `ancient_runestone.tscn`.
+- Recomposed Forest Environment in `res://scenes/world.tscn`:
+  - Established deliberate depth layering: background northern forest canopy wall, open entry meadow, integrated cabin glade, winding woodland corridor with asymmetric copses, secluded southern herb alcove, majestic 360-degree ancient runestone grove, and foreground framing trees along the southern camera edge.
+  - Verified all player routes and interaction trigger bounds remain 100% unobstructed.
+- Updated `docs/asset-licenses.md`, `docs/phases.md`, and `README.md`.
+- Validated via automated test suite (`test_phase5_2_full.gd`) with 0 errors across all 9 textures, 12 scenes, and gameplay interaction simulations.
+
 ## Phase 5.1 — Environment Art Integration & World Polish (2026-10-19)
 - Overhauled Terrain Rendering in `res://scripts/world/isometric_ground.gd`:
   - Replaced high-frequency single-tile noise with smooth harmonic spatial clustering, completely eliminating the repetitive diamond checkerboard appearance.

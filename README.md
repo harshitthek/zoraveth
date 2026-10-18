@@ -9,7 +9,7 @@
 - **Engine:** Godot 4.7.2 (Official Stable).
 - **Renderer:** Compatibility (`gl_compatibility`).
 - **Main Scene:** `res://scenes/world.tscn`.
-- **Phase:** Phase 5.1 (Environment Art Integration & World Polish) validated.
+- **Phase:** Phase 5.2 (Terrain Rework & Environment Composition) validated.
 
 ## Project Structure
 

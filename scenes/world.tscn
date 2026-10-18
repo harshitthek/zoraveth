@@ -39,95 +39,104 @@ grid_origin = Vector2(720, 100)
 [node name="SortableEntities" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="TreeEntryNW1" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(240, 420)
+[node name="TreeBackdropNW1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(260, 240)
 
-[node name="TreeEntryNW2" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(180, 470)
+[node name="TreeBackdropNW2" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
+position = Vector2(370, 220)
 
-[node name="TreeEntryW" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(140, 540)
+[node name="TreeBackdropCabinN1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(470, 190)
+
+[node name="TreeBackdropCabinN2" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
+position = Vector2(570, 210)
+
+[node name="TreeBackdropMid1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(700, 240)
+
+[node name="TreeBackdropMid2" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(840, 260)
+
+[node name="TreeBackdropMid3" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
+position = Vector2(970, 270)
+
+[node name="TreeBackdropGroveN1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1120, 310)
+
+[node name="TreeBackdropGroveN2" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
+position = Vector2(1270, 330)
+
+[node name="TreeBackdropGroveNE" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1420, 360)
+
+[node name="TreeEntryW1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(180, 490)
+
+[node name="TreeEntryW2" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(160, 570)
 
 [node name="TreeEntrySW" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(210, 620)
+position = Vector2(220, 640)
 
-[node name="TreeEntryS" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(320, 640)
+[node name="TreeEntryS1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(340, 660)
 
-[node name="TreeEntrySE" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(440, 630)
+[node name="TreeEntryS2" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(460, 650)
 
-[node name="TreeEntryN" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(370, 260)
+[node name="RockEntry" parent="SortableEntities" instance=ExtResource("7_rock")]
+position = Vector2(260, 590)
 
-[node name="TreeEntryNE" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
-position = Vector2(550, 240)
+[node name="BushEntry" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(290, 550)
+
+[node name="HerbEntry" parent="SortableEntities" instance=ExtResource("9_herb")]
+position = Vector2(420, 540)
 
 [node name="CabinExterior" parent="SortableEntities" instance=ExtResource("11_cabin_exterior")]
 position = Vector2(480, 330)
 
-[node name="RockEntry1" parent="SortableEntities" instance=ExtResource("7_rock")]
-position = Vector2(280, 530)
+[node name="RockCabin" parent="SortableEntities" instance=ExtResource("7_rock")]
+position = Vector2(565, 365)
 
-[node name="RockEntry2" parent="SortableEntities" instance=ExtResource("7_rock")]
-position = Vector2(520, 440)
+[node name="BushCabin" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(585, 405)
 
-[node name="BushEntry1" parent="SortableEntities" instance=ExtResource("8_bush")]
-position = Vector2(310, 450)
-
-[node name="BushEntry2" parent="SortableEntities" instance=ExtResource("8_bush")]
-position = Vector2(450, 540)
-
-[node name="HerbEntry" parent="SortableEntities" instance=ExtResource("9_herb")]
-position = Vector2(410, 520)
+[node name="BushCabinW" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(405, 345)
 
 [node name="TreeRouteN1" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
-position = Vector2(650, 360)
+position = Vector2(650, 370)
 
 [node name="TreeRouteN2" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(730, 380)
+position = Vector2(770, 390)
 
 [node name="TreeRouteN3" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(860, 370)
+position = Vector2(910, 380)
 
-[node name="TreeRouteN4" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
-position = Vector2(960, 390)
-
-[node name="TreeRouteS1" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(590, 580)
-
-[node name="TreeRouteS2" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(710, 590)
-
-[node name="TreeRouteS3" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(870, 610)
-
-[node name="TreeRouteS4" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(1010, 590)
+[node name="HerbRoute" parent="SortableEntities" instance=ExtResource("9_herb")]
+position = Vector2(650, 440)
 
 [node name="RockRoute1" parent="SortableEntities" instance=ExtResource("7_rock")]
-position = Vector2(640, 460)
-
-[node name="RockRoute2" parent="SortableEntities" instance=ExtResource("7_rock")]
-position = Vector2(900, 460)
+position = Vector2(600, 460)
 
 [node name="BushRoute1" parent="SortableEntities" instance=ExtResource("8_bush")]
-position = Vector2(690, 470)
-
-[node name="BushRoute2" parent="SortableEntities" instance=ExtResource("8_bush")]
-position = Vector2(850, 460)
-
-[node name="BushRoute3" parent="SortableEntities" instance=ExtResource("8_bush")]
-position = Vector2(980, 490)
+position = Vector2(710, 455)
 
 [node name="PillarRoute" parent="SortableEntities" instance=ExtResource("6_pillar")]
-position = Vector2(880, 440)
+position = Vector2(880, 450)
+
+[node name="RockRoute2" parent="SortableEntities" instance=ExtResource("7_rock")]
+position = Vector2(940, 460)
+
+[node name="BushRoute2" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(820, 470)
 
 [node name="TreeAlcove1" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(730, 690)
+position = Vector2(720, 710)
 
 [node name="TreeAlcove2" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(840, 700)
+position = Vector2(840, 710)
 
 [node name="HerbAlcove" parent="SortableEntities" instance=ExtResource("9_herb")]
 position = Vector2(790, 645)
@@ -135,53 +144,50 @@ position = Vector2(790, 645)
 [node name="RockAlcove" parent="SortableEntities" instance=ExtResource("7_rock")]
 position = Vector2(740, 640)
 
-[node name="TreeGroveNW" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
-position = Vector2(1140, 440)
+[node name="BushAlcove" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(840, 640)
 
-[node name="TreeGroveN1" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(1230, 410)
+[node name="TreeGroveNW" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1130, 450)
 
-[node name="TreeGroveN2" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(1310, 410)
+[node name="TreeGroveE1" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
+position = Vector2(1440, 520)
 
-[node name="TreeGroveNE" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(1400, 450)
-
-[node name="TreeGroveE" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
-position = Vector2(1460, 540)
+[node name="TreeGroveE2" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1400, 610)
 
 [node name="TreeGroveSE" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(1410, 630)
-
-[node name="TreeGroveS" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(1310, 660)
+position = Vector2(1330, 680)
 
 [node name="TreeGroveSW" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(1180, 630)
-
-[node name="TreeGroveW" parent="SortableEntities" instance=ExtResource("5_tree")]
-position = Vector2(1110, 540)
+position = Vector2(1140, 650)
 
 [node name="PillarGroveLeft" parent="SortableEntities" instance=ExtResource("6_pillar")]
-position = Vector2(1210, 510)
+position = Vector2(1190, 505)
 
 [node name="PillarGroveRight" parent="SortableEntities" instance=ExtResource("6_pillar")]
-position = Vector2(1320, 510)
+position = Vector2(1210, 585)
 
 [node name="AncientRunestone" parent="SortableEntities" instance=ExtResource("10_runestone")]
 position = Vector2(1264, 545)
 
 [node name="HerbGrove" parent="SortableEntities" instance=ExtResource("9_herb")]
-position = Vector2(1350, 595)
+position = Vector2(1340, 590)
 
 [node name="RockGrove" parent="SortableEntities" instance=ExtResource("7_rock")]
-position = Vector2(1210, 590)
+position = Vector2(1330, 500)
 
 [node name="BushGrove1" parent="SortableEntities" instance=ExtResource("8_bush")]
-position = Vector2(1230, 490)
+position = Vector2(1280, 480)
 
 [node name="BushGrove2" parent="SortableEntities" instance=ExtResource("8_bush")]
-position = Vector2(1300, 560)
+position = Vector2(1370, 560)
+
+[node name="TreeForegroundW" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(530, 790)
+
+[node name="TreeForegroundE" parent="SortableEntities" instance=ExtResource("14_tree_ancient")]
+position = Vector2(1010, 810)
 
 [node name="Player" parent="SortableEntities" instance=ExtResource("4_player")]
 position = Vector2(368, 480)

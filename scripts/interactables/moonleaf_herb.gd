@@ -42,6 +42,8 @@ func interact(player: Node) -> void:
 		return
 
 	is_collected = true
+	if player and player.has_method("register_resource_collection"):
+		player.register_resource_collection(herb_name)
 	if interaction_area:
 		interaction_area.set_deferred("monitoring", false)
 		interaction_area.set_deferred("monitorable", false)

@@ -59,6 +59,16 @@ No fixed dates. Complete and validate each phase before expanding scope.
 - [x] Validate via automated test suite (`test_phase5_1.gd`) with 0 failures.
 **Done when:** the forest feels like a unified, handcrafted fantasy RPG environment with readable paths, organic composition, and no checkerboard grid. (Completed and validated).
 
+## Phase 5.2 — Terrain rework & environment composition
+- [x] Replace discrete diamond tile polygons with continuous seamless painterly forest floor canvas (`terrain_forest_floor.png`, 512x512) covering the entire world.
+- [x] Rebuild dirt trails as continuous, smooth multi-pass organic ribbons (transition border, compacted earth, worn footway) with embedded stepping stones and edge grass tufts.
+- [x] Eliminate circular miniature tabletop pedestal disc from `tree_pine.png`, giving authentic root flares meeting the ground naturally.
+- [x] Generate high-resolution handcrafted painterly assets for `bush_forest.png` ($64 \times 52$) and `pillar_ancient.png` ($44 \times 88$) with transparent backgrounds and organic ground contact.
+- [x] Remove obsolete primitive rune polygon from `ancient_runestone.tscn` and soften contact shadows across all environmental props.
+- [x] Recompose entire forest scene (`scenes/world.tscn`) into deliberate foreground, middle ground, and background canopy layers with clear sightlines and asymmetric clusters.
+- [x] Full simulation test suite passed with 0 errors (`test_phase5_2_full.gd`).
+**Done when:** the forest environment is naturally composed with seamless terrain, continuous winding dirt paths, and cohesive painterly assets. (Completed and validated).
+
 ## Phase 6 — Spellblade foundation
 - [ ] Basic weapon attack.
 - [ ] One elemental sword technique.
