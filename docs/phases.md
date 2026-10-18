@@ -19,9 +19,9 @@ No fixed dates. Complete and validate each phase before expanding scope.
 **Done when:** player moves consistently, collides with obstacles, remains visible and controls are documented.
 
 ## Phase 2 — Isometric visual test
-- [ ] Establish tile/world scale, sorting, collision footprints and zoom limits.
-- [ ] Add placeholder ground, trees, rocks and obstacles.
-- [ ] Validate occlusion and readability.
+- [x] Establish tile/world scale, sorting, collision footprints and zoom limits.
+- [x] Add placeholder ground, trees, rocks and obstacles.
+- [x] Validate occlusion and readability.
 **Done when:** character/environment overlap predictably and the scene runs stably on target hardware.
 
 ## Phase 3 — First forest

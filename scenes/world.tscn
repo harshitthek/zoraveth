@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/world/isometric_ground.gd" id="1_ground_script"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/environment/tree.tscn" id="3_tree"]
+[ext_resource type="PackedScene" path="res://scenes/environment/pillar.tscn" id="4_pillar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_horizontal"]
 size = Vector2(1152, 32)
@@ -8,89 +11,100 @@ size = Vector2(1152, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vertical"]
 size = Vector2(32, 600)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_obstacle"]
-size = Vector2(64, 64)
-
 [node name="World" type="Node2D"]
 
-[node name="Ground" type="ColorRect" parent="."]
+[node name="Backdrop" type="ColorRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0.12, 0.16, 0.14, 1)
+color = Color(0.09, 0.12, 0.1, 1)
 
-[node name="Instructions" type="Label" parent="."]
+[node name="IsometricGround" type="Node2D" parent="."]
+script = ExtResource("1_ground_script")
+tile_width = 64.0
+tile_height = 32.0
+grid_size = Vector2i(14, 14)
+grid_origin = Vector2(576, 120)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Instructions" type="Label" parent="UI"]
 offset_left = 32.0
-offset_top = 40.0
-offset_right = 450.0
-offset_bottom = 70.0
-text = "Zoraveth — Phase 1 Movement Sandbox | Controls: WASD / Arrow Keys"
+offset_top = 24.0
+offset_right = 720.0
+offset_bottom = 54.0
+text = "Zoraveth — Phase 2: Isometric Visual Test | 64x32 Diamond Grid & Y-Sorting | Move: WASD / Arrows"
 
-[node name="Walls" type="Node2D" parent="."]
+[node name="SortableEntities" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="TopWall" type="StaticBody2D" parent="Walls"]
+[node name="TreeNorth" parent="SortableEntities" instance=ExtResource("3_tree")]
+position = Vector2(576, 260)
+
+[node name="TreeWest" parent="SortableEntities" instance=ExtResource("3_tree")]
+position = Vector2(380, 360)
+
+[node name="TreeEast" parent="SortableEntities" instance=ExtResource("3_tree")]
+position = Vector2(772, 360)
+
+[node name="PillarCenter" parent="SortableEntities" instance=ExtResource("4_pillar")]
+position = Vector2(576, 420)
+
+[node name="PillarSouthWest" parent="SortableEntities" instance=ExtResource("4_pillar")]
+position = Vector2(460, 480)
+
+[node name="Player" parent="SortableEntities" instance=ExtResource("2_player")]
+position = Vector2(576, 330)
+
+[node name="Boundaries" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Boundaries"]
 position = Vector2(576, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/TopWall"]
 shape = SubResource("RectangleShape2D_horizontal")
 
-[node name="Visual" type="ColorRect" parent="Walls/TopWall"]
+[node name="Visual" type="ColorRect" parent="Boundaries/TopWall"]
 offset_left = -576.0
 offset_top = -16.0
 offset_right = 576.0
 offset_bottom = 16.0
-color = Color(0.35, 0.38, 0.42, 1)
+color = Color(0.2, 0.24, 0.22, 1)
 
-[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+[node name="BottomWall" type="StaticBody2D" parent="Boundaries"]
 position = Vector2(576, 632)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/BottomWall"]
 shape = SubResource("RectangleShape2D_horizontal")
 
-[node name="Visual" type="ColorRect" parent="Walls/BottomWall"]
+[node name="Visual" type="ColorRect" parent="Boundaries/BottomWall"]
 offset_left = -576.0
 offset_top = -16.0
 offset_right = 576.0
 offset_bottom = 16.0
-color = Color(0.35, 0.38, 0.42, 1)
+color = Color(0.2, 0.24, 0.22, 1)
 
-[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+[node name="LeftWall" type="StaticBody2D" parent="Boundaries"]
 position = Vector2(16, 324)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftWall"]
 shape = SubResource("RectangleShape2D_vertical")
 
-[node name="Visual" type="ColorRect" parent="Walls/LeftWall"]
+[node name="Visual" type="ColorRect" parent="Boundaries/LeftWall"]
 offset_left = -16.0
 offset_top = -300.0
 offset_right = 16.0
 offset_bottom = 300.0
-color = Color(0.35, 0.38, 0.42, 1)
+color = Color(0.2, 0.24, 0.22, 1)
 
-[node name="RightWall" type="StaticBody2D" parent="Walls"]
+[node name="RightWall" type="StaticBody2D" parent="Boundaries"]
 position = Vector2(1136, 324)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightWall"]
 shape = SubResource("RectangleShape2D_vertical")
 
-[node name="Visual" type="ColorRect" parent="Walls/RightWall"]
+[node name="Visual" type="ColorRect" parent="Boundaries/RightWall"]
 offset_left = -16.0
 offset_top = -300.0
 offset_right = 16.0
 offset_bottom = 300.0
-color = Color(0.35, 0.38, 0.42, 1)
-
-[node name="ObstaclePillar" type="StaticBody2D" parent="Walls"]
-position = Vector2(576, 200)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/ObstaclePillar"]
-shape = SubResource("RectangleShape2D_obstacle")
-
-[node name="Visual" type="ColorRect" parent="Walls/ObstaclePillar"]
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-color = Color(0.5, 0.35, 0.25, 1)
-
-[node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector2(576, 360)
+color = Color(0.2, 0.24, 0.22, 1)

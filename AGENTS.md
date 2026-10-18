@@ -37,9 +37,10 @@
 After every task:
 1. Run relevant Godot validation/tests when possible.
 2. If validation cannot run, say so and give manual steps.
-3. List exact files created/modified.
-4. Report tests/commands and truthful results.
-5. State known limitations and next smallest step.
-6. Update documentation when actual project status or a durable decision changes.
+3. Run `coderabbit review --agent --include-untracked --uncommitted` and resolve all actionable items until no new findings remain.
+4. List exact files created/modified.
+5. Report tests/commands and truthful results.
+6. State known limitations and next smallest step.
+7. Update documentation when actual project status or a durable decision changes.
 
 A feature is not "working" merely because code was generated. It must be run or explicitly marked unverified.

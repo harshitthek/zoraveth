@@ -1,5 +1,15 @@
 # Changelog
 
+## Phase 2 — Isometric Visual Test (2026-10-19)
+- Established 2:1 isometric diamond projection convention with 64x32 pixel tiles (`tile_width = 64.0`, `tile_height = 32.0`).
+- Implemented `res://scripts/world/isometric_ground.gd` drawing a 14x14 isometric diamond clearing with alternating forest terrain palette.
+- Created reusable environmental scenes:
+  - `res://scenes/environment/tree.tscn`: Multi-tiered pine canopy with compact base trunk collision, allowing full character occlusion and free movement behind foliage.
+  - `res://scenes/environment/pillar.tscn`: Faceted stone pillar with top cap and base footprint collision.
+- Refactored `res://scenes/player/player.tscn` to use foot-origin `(0, 0)` ground contact point, visual body/head offsets, ground shadow, and compact feet collision box.
+- Structured `res://scenes/world.tscn` using a `SortableEntities` container (`y_sort_enabled = true`) to enable depth sorting between the player and environmental objects.
+- Validated via automated script test (`test_phase2.gd`): verified 64x32 tile ratio, `y_sort_enabled` hierarchy, 4-direction Cartesian movement and diagonal velocity normalization, obstacle footprint collision, and depth sorting (tree renders in front when player is above; player renders in front when below).
+
 ## Phase 1 — Movement Sandbox (2026-10-19)
 - Configured Godot Input Map actions (`move_up`, `move_down`, `move_left`, `move_right`) for WASD and Arrow Keys via `project.godot`.
 - Created reusable player scene `res://scenes/player/player.tscn` using `CharacterBody2D`, `CollisionShape2D`, `Camera2D`, and placeholder visual `ColorRect`.

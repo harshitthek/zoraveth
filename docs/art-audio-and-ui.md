@@ -14,7 +14,8 @@
 - Adjustable but bounded zoom.
 - Limited contextual rotation only if it adds value and remains comfortable.
 - Cinematic framing can be used for discoveries and major bosses without taking control away for long periods.
-- Confirm the chosen 2D coordinate and depth-sorting model with a small test before building a large map.
+- 2D coordinate model uses 2:1 isometric diamond projection (64x32 pixel tiles).
+- Depth sorting is managed via `CanvasItem.y_sort_enabled = true`. Sortable entities use ground contact foot-origins `(0, 0)`, separating visual height from compact collision footprints.
 
 ## Controls
 - Initial PC target: WASD movement, mouse aiming/target assistance, hotkey skills, directional dodge and weapon combos.

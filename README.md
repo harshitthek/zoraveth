@@ -9,7 +9,7 @@
 - **Engine:** Godot 4.7.2 (Official Stable).
 - **Renderer:** Compatibility (`gl_compatibility`).
 - **Main Scene:** `res://scenes/world.tscn`.
-- **Phase:** Phase 1 (Movement Sandbox) validated.
+- **Phase:** Phase 2 (Isometric Visual Test) validated.
 
 ## Project Structure
 
@@ -17,14 +17,20 @@
 zoraveth/
 ├── AGENTS.md                  # Instructions and guardrails for AI agents
 ├── README.md                  # Project overview and navigation
+├── LICENSE                    # Apache 2.0 open-source license
 ├── project.godot              # Godot 4.7 engine configuration
 ├── scenes/
-│   ├── world.tscn             # Project main scene (movement sandbox)
-│   └── player/
-│       └── player.tscn        # Reusable Player CharacterBody2D scene
+│   ├── world.tscn             # Project main scene (isometric visual test)
+│   ├── player/
+│   │   └── player.tscn        # Reusable Player CharacterBody2D scene
+│   └── environment/
+│       ├── tree.tscn          # Sortable IsometricTree scene
+│       └── pillar.tscn        # Sortable IsometricPillar scene
 ├── scripts/
-│   └── player/
-│       └── player.gd          # Player 2D movement and collision script
+│   ├── player/
+│   │   └── player.gd          # Player 2D movement and collision script
+│   └── world/
+│       └── isometric_ground.gd# 64x32 2:1 isometric diamond grid renderer
 └── docs/                      # Complete design bible and system specifications
     ├── asset-licenses.md      # Asset provenance and license ledger
     ├── context.md             # High-level design context and world pillars

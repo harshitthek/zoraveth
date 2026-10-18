@@ -1,14 +1,15 @@
 # Development Workflow
 
 ## Standard task loop
-1. Read `AGENTS.md`, `context.md`, the current phase, and relevant specs.
+1. Read `AGENTS.md`, `docs/context.md`, the current phase, and relevant specs.
 2. Inspect files, Godot version/settings and Git status.
 3. State one scoped task and acceptance criteria.
 4. Implement only that task.
 5. Run relevant validation.
-6. Review the diff.
-7. Update status/decisions/docs only where meaningful.
-8. Report changed files, tests, limitations and next step.
+6. Run `coderabbit review --agent --include-untracked --uncommitted` and address all findings until zero new findings remain.
+7. Review the diff.
+8. Update status/decisions/docs only where meaningful.
+9. Report changed files, tests, limitations and next step.
 
 ## Antigravity prompt template
 ```text
