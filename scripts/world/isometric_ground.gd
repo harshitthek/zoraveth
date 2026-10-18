@@ -54,26 +54,23 @@ extends Node2D
 		grid_line_color = value
 		queue_redraw()
 
-# Key waypoints along the winding forest route in tile coordinates
-var _path_waypoints: Array[Vector2] = [
-	Vector2(6, 17),   # Entry clearing
-	Vector2(10, 15),  # Clearing exit
-	Vector2(13, 13),  # Woodland curve
-	Vector2(16, 10),  # Central woodland passage
-	Vector2(19, 8),   # Northward bend
-	Vector2(23, 6)    # Ancient discovery grove
+# Key waypoints along the winding forest route and branches in tile coordinates
+var _trail_routes: Array[PackedVector2Array] = [
+	# Main forest route from Entry Meadow to Ancient Discovery Grove
+	PackedVector2Array([
+		Vector2(6, 18), Vector2(7, 16), Vector2(10, 15),
+		Vector2(13, 13), Vector2(16, 11), Vector2(19, 8), Vector2(22, 6)
+	]),
+	# Cabin approach branch connecting meadow to cabin doorway
+	PackedVector2Array([Vector2(7, 16), Vector2(6, 14), Vector2(5, 12)]),
+	# Secluded alcove branch connecting woodland trail to herb grove
+	PackedVector2Array([Vector2(13, 13), Vector2(15, 14), Vector2(17, 15)])
 ]
 
 
 func _draw() -> void:
 	var half_w: float = tile_width * 0.5
 	var half_h: float = tile_height * 0.5
-	var grass_palette: Array[Color] = [
-		tile_color_a.darkened(0.06),
-		tile_color_a,
-		tile_color_b,
-		tile_color_b.lightened(0.06)
-	]
 
 	for gy in range(grid_size.y):
 		for gx in range(grid_size.x):
@@ -83,50 +80,52 @@ func _draw() -> void:
 			var cx: float = grid_origin.x + (float(gx) - float(gy)) * half_w
 			var cy: float = grid_origin.y + (float(gx) + float(gy)) * half_h
 
-			var top: Vector2 = Vector2(cx, cy - half_h)
-			var right: Vector2 = Vector2(cx + half_w, cy)
-			var bottom: Vector2 = Vector2(cx, cy + half_h)
-			var left: Vector2 = Vector2(cx - half_w, cy)
+			var poly: PackedVector2Array = PackedVector2Array([
+				Vector2(cx, cy - half_h), Vector2(cx + half_w, cy),
+				Vector2(cx, cy + half_h), Vector2(cx - half_w, cy)
+			])
 
-			var poly: PackedVector2Array = PackedVector2Array([top, right, bottom, left])
-			var seed_val: int = (gx * 17 + gy * 31) ^ (gx * 7)
+			# Smooth harmonic spatial variation eliminates the checkerboard
+			var harmonic: float = sin(gx * 0.28 + gy * 0.22) * 0.5 + cos(gx * 0.15 - gy * 0.3) * 0.5
+			var base_grass: Color = tile_color_a.lerp(tile_color_b, clampf(harmonic + 0.5, 0.0, 1.0))
+			if gx < 3 or gy < 3 or gx > grid_size.x - 4 or gy > grid_size.y - 4:
+				base_grass = base_grass.darkened(0.12)
 
+			# Soft transitional path blending
 			var fill_color: Color
-			if path_dist <= 0.85:
-				fill_color = path_color_a if (seed_val % 2 == 0) else path_color_b
-			elif path_dist <= 1.4:
-				fill_color = Color(0.21, 0.25, 0.18, 1.0) if (seed_val % 2 == 0) else Color(0.23, 0.27, 0.19, 1.0)
+			if path_dist <= 0.8:
+				fill_color = path_color_a.lerp(path_color_b, 0.5 + sin(gx * 0.8 + gy * 0.5) * 0.3)
+			elif path_dist <= 1.45:
+				var t: float = (path_dist - 0.8) / 0.65
+				fill_color = path_color_b.darkened(0.05).lerp(base_grass, t)
 			else:
-				var tone_idx: int = absi(seed_val) % grass_palette.size()
-				fill_color = grass_palette[tone_idx]
+				fill_color = base_grass
 
 			draw_colored_polygon(poly, fill_color)
 
 			# Subtle painterly micro-details
-			if path_dist <= 0.85:
-				if (seed_val % 3 == 0):
-					draw_circle(Vector2(cx + 2.0, cy - 1.0), 1.2, Color(0.38, 0.35, 0.26, 0.6))
-			elif path_dist > 1.4 and (seed_val % 4 == 0):
+			var seed_val: int = (gx * 17 + gy * 31) ^ (gx * 7)
+			if path_dist <= 0.8 and (seed_val % 4 == 0):
+				draw_circle(Vector2(cx + 1.0, cy - 1.0), 1.5, Color(0.38, 0.35, 0.26, 0.7))
+			elif path_dist > 1.45 and (seed_val % 5 == 0):
 				draw_line(Vector2(cx - 2.0, cy), Vector2(cx - 3.0, cy - 3.5), Color(0.28, 0.42, 0.30, 0.6), 1.0)
 				draw_line(Vector2(cx + 1.0, cy), Vector2(cx + 3.0, cy - 4.0), Color(0.25, 0.38, 0.27, 0.6), 1.0)
 
 
 func _get_min_path_dist(pt: Vector2) -> float:
-	var min_dist: float = INF
-	for i in range(_path_waypoints.size() - 1):
-		var p1: Vector2 = _path_waypoints[i]
-		var p2: Vector2 = _path_waypoints[i + 1]
-		var d: float = _dist_to_segment(pt, p1, p2)
-		if d < min_dist:
-			min_dist = d
-	return min_dist
+	var min_d: float = INF
+	for route in _trail_routes:
+		for i in range(route.size() - 1):
+			var d: float = _dist_to_segment(pt, route[i], route[i + 1])
+			if d < min_d:
+				min_d = d
+	return min_d
 
 
 func _dist_to_segment(p: Vector2, a: Vector2, b: Vector2) -> float:
 	var ab: Vector2 = b - a
-	var ab_len_sq: float = ab.length_squared()
-	if ab_len_sq == 0.0:
+	var len_sq: float = ab.length_squared()
+	if len_sq == 0.0:
 		return p.distance_to(a)
-	var t: float = clampf((p - a).dot(ab) / ab_len_sq, 0.0, 1.0)
-	var proj: Vector2 = a + t * ab
-	return p.distance_to(proj)
+	var t: float = clampf((p - a).dot(ab) / len_sq, 0.0, 1.0)
+	return p.distance_to(a + t * ab)

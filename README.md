@@ -9,7 +9,7 @@
 - **Engine:** Godot 4.7.2 (Official Stable).
 - **Renderer:** Compatibility (`gl_compatibility`).
 - **Main Scene:** `res://scenes/world.tscn`.
-- **Phase:** Phase 5 (Art Direction, Asset Pipeline & Visual Overhaul) validated.
+- **Phase:** Phase 5.1 (Environment Art Integration & World Polish) validated.
 
 ## Project Structure
 
@@ -21,7 +21,7 @@ zoraveth/
 ├── project.godot              # Godot 4.7 engine configuration
 ├── assets/                    # Handcrafted 2D sprite textures (PNG)
 │   ├── characters/            # Player and Elderly Stranger sprites
-│   ├── environment/           # Pine trees, ancient trees, rocks, cabin exterior
+│   ├── environment/           # Trees, rocks, bushes, pillars, cabin exterior
 │   └── interactables/         # Moonleaf herbs and ancient runestone
 ├── docs/                      # World lore, design docs, art direction & decisions
 ├── scenes/

@@ -1,26 +1,20 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/environment/pillar_ancient.png" id="1_texture"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_base"]
-size = Vector2(26, 14)
+size = Vector2(24, 12)
 
 [node name="IsometricPillar" type="StaticBody2D"]
 
 [node name="Shadow" type="Polygon2D" parent="."]
 color = Color(0.06, 0.1, 0.07, 0.45)
-polygon = PackedVector2Array(-18, 0, 0, -8, 18, 0, 0, 8)
+polygon = PackedVector2Array(-18, 0, 0, -7, 18, 0, 0, 7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_base")
 
-[node name="SideLeft" type="Polygon2D" parent="."]
-color = Color(0.38, 0.42, 0.46, 1)
-polygon = PackedVector2Array(-14, 0, 0, 7, 0, -55, -14, -62)
-
-[node name="SideRight" type="Polygon2D" parent="."]
-color = Color(0.5, 0.55, 0.6, 1)
-polygon = PackedVector2Array(0, 7, 14, 0, 14, -62, 0, -55)
-
-[node name="TopCap" type="Polygon2D" parent="."]
-color = Color(0.62, 0.67, 0.72, 1)
-polygon = PackedVector2Array(0, -55, 14, -62, 0, -69, -14, -62)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -36)
+texture = ExtResource("1_texture")

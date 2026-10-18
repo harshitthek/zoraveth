@@ -15,6 +15,8 @@ This document tracks all art, audio, font, and third-party assets used in Zorave
 | `res://assets/interactables/moonleaf_herb.png` | Project Original | Zoraveth Project | Apache 2.0 | No | Active Production | Luminescent cyan Moonleaf Herb sprite |
 | `res://assets/characters/elderly_stranger.png` | Project Original | Zoraveth Project | Apache 2.0 | No | Active Production | Elderly Hermit Stranger sprite with wool cloak and staff |
 | `res://assets/characters/player.png` | Project Original | Zoraveth Project | Apache 2.0 | No | Active Production | Isometric fantasy adventurer traveler sprite |
+| `res://assets/environment/bush_forest.png` | Project Original | Zoraveth Project | Apache 2.0 | No | Active Production | Painterly wild blackberry and fern foliage bush sprite |
+| `res://assets/environment/pillar_ancient.png` | Project Original | Zoraveth Project | Apache 2.0 | No | Active Production | Weathered chipped basalt stone pillar with moss and rune crack |
 
 ## Licensing Rules
 

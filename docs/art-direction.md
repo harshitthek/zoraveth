@@ -68,16 +68,23 @@ Every entity separates its **visual volume** from its **ground contact footprint
 
 | Entity Type | Visual Dimensions ($W \times H$) | Collision Footprint ($W \times H$) | Footprint Offset |
 | :--- | :--- | :--- | :--- |
-| **Player** | $24 \times 38\text{ px}$ | $18 \times 10\text{ px}$ | $(0, -5\text{ px})$ |
-| **Elderly Stranger** | $26 \times 38\text{ px}$ | $18 \times 10\text{ px}$ | $(0, -5\text{ px})$ |
-| **Standard Pine Tree** | $74 \times 116\text{ px}$ | $20 \times 12\text{ px}$ | $(0, -6\text{ px})$ |
-| **Ancient Spreading Oak** | $110 \times 140\text{ px}$ | $28 \times 16\text{ px}$ | $(0, -8\text{ px})$ |
-| **Forest Boulder** | $36 \times 28\text{ px}$ | $24 \times 14\text{ px}$ | $(0, -7\text{ px})$ |
-| **Forest Bush** | $36 \times 26\text{ px}$ | Non-blocking / Passable | N/A |
-| **Moonleaf Herb** | $20 \times 18\text{ px}$ | Trigger Area: $R=24\text{ px}$ | $(0, -6\text{ px})$ |
-| **Ancient Runestone** | $36 \times 78\text{ px}$ | $28 \times 14\text{ px}$ | $(0, -7\text{ px})$ |
-| **Cabin Exterior** | $148 \times 120\text{ px}$ | Wall Perimeter Polygon | Perimeter |
+| **Player** | $32 \times 48\text{ px}$ | $22 \times 12\text{ px}$ | $(0, -6\text{ px})$ |
+| **Elderly Stranger** | $38 \times 52\text{ px}$ | $18 \times 10\text{ px}$ | $(0, -5\text{ px})$ |
+| **Standard Pine Tree** | $100 \times 150\text{ px}$ | $20 \times 12\text{ px}$ | $(0, -6\text{ px})$ |
+| **Ancient Spreading Oak** | $140 \times 180\text{ px}$ | $28 \times 14\text{ px}$ | $(0, -7\text{ px})$ |
+| **Forest Boulder** | $52 \times 40\text{ px}$ | $24 \times 14\text{ px}$ | $(0, -7\text{ px})$ |
+| **Forest Bush** | $48 \times 40\text{ px}$ | Non-blocking / Passable | $(0, -18\text{ px})$ |
+| **Ancient Pillar** | $40 \times 80\text{ px}$ | $24 \times 12\text{ px}$ | $(0, -6\text{ px})$ |
+| **Moonleaf Herb** | $32 \times 32\text{ px}$ | Trigger Area: $R=24\text{ px}$ | $(0, -6\text{ px})$ |
+| **Ancient Runestone** | $54 \times 96\text{ px}$ | $32 \times 16\text{ px}$ | $(0, -8\text{ px})$ |
+| **Cabin Exterior** | $168 \times 136\text{ px}$ | Base Footprint with Door Notch | Perimeter |
 | **Cabin Interior Floor** | $440 \times 220\text{ px}$ (Playable) | Outer Wall Perimeter Polygon | Perimeter |
+
+### 3.3 Terrain Presentation & Branched Path Hierarchy
+1. **Harmonic Spatial Clustering:** Rather than high-frequency per-tile color variation (which produces an artificial checkerboard), ground surfaces utilize low-frequency spatial harmonics ($4\text{--}8$ tile coherence). Sunlit clearings and shaded woodland swards blend continuously across broad regions.
+2. **Branched Beaten-Earth Trails:** Pathways follow natural waypoint curves connecting all key points of interest (Entry Meadow, Cabin Doorstep, Woodland Trail, Secluded Herb Alcove, and Ancient Discovery Grove).
+3. **Soft Transitional Path Edges:** Trails blend from dense beaten loam center (`path_dist \le 0.8`) through a soft transitional mossy border (`0.8 < path_dist \le 1.45`) into the surrounding grass, with embedded cobblestones, fallen leaves, and moss fringes.
+4. **Perimeter Deepening & Contact Shadows:** Forest boundaries and foundations receive natural contact darkening (`darkened(0.12)`), seamlessly anchoring trunks and masonry into the soil.
 
 ---
 

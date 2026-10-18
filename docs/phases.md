@@ -49,6 +49,16 @@ No fixed dates. Complete and validate each phase before expanding scope.
 - [x] Verify visual overhaul with automated headless test suite (`test_phase5.gd`).
 **Done when:** prototype looks cohesive, painterly, and atmospheric without breaking existing mechanics. (Completed and validated).
 
+## Phase 5.1 — Environment art integration & world polish
+- [x] Eliminate the checkerboard appearance in `isometric_ground.gd` via harmonic low-frequency spatial clustering, broad meadow transitions, and edge darkening.
+- [x] Create a natural, winding branched trail with soft mossy borders connecting Entry Meadow, Cabin Doorstep, Woodland Trail, Secluded Herb Alcove, and Ancient Discovery Grove.
+- [x] Fix pale fringe/cutout halos around tree roots, rocks, and runestone in source textures.
+- [x] Replace geometric vector bushes and pillars with handcrafted painterly sprites (`bush_forest.png`, `pillar_ancient.png`).
+- [x] Recompose trees and props in `scenes/world.tscn` into natural woodland clusters, open clearings, and focal sightlines.
+- [x] Refine ExplorationUI with sleek, discreet badges, high-contrast typography, and tactile interaction prompt pills.
+- [x] Validate via automated test suite (`test_phase5_1.gd`) with 0 failures.
+**Done when:** the forest feels like a unified, handcrafted fantasy RPG environment with readable paths, organic composition, and no checkerboard grid. (Completed and validated).
+
 ## Phase 6 — Spellblade foundation
 - [ ] Basic weapon attack.
 - [ ] One elemental sword technique.

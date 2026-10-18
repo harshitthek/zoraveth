@@ -1,5 +1,30 @@
 # Changelog
 
+## Phase 5.1 — Environment Art Integration & World Polish (2026-10-19)
+- Overhauled Terrain Rendering in `res://scripts/world/isometric_ground.gd`:
+  - Replaced high-frequency single-tile noise with smooth harmonic spatial clustering, completely eliminating the repetitive diamond checkerboard appearance.
+  - Added low-frequency broad meadow transitions and natural forest perimeter darkening.
+  - Implemented organic branched beaten-earth trail with soft transitional mossy borders connecting all major playable zones: Entry Meadow, Cabin Doorstep, Woodland Route, Secluded Herb Alcove, and Ancient Discovery Grove.
+  - Added natural embedded cobblestones along the trail and delicate grass blade accents in meadows, keeping file size to 119 LOC (< 150 LOC).
+- Fixed Tree Root and Prop Pale Halo Fringe:
+  - Cleaned near-white cutout fringe pixels from `tree_pine.png`, `tree_ancient.png`, `rock_mossy.png`, and `runestone_ancient.png` source textures.
+  - Ensured trees, boulders, and monoliths blend seamlessly into dark grass and ground contact shadows without pale rings or artificial borders.
+- Unified Environmental Props with Handcrafted Painterly Textures:
+  - Created `res://assets/environment/bush_forest.png` ($48 \times 40\text{ px}$): lush wild blackberry and fern foliage with layered shading and berry highlights.
+  - Created `res://assets/environment/pillar_ancient.png` ($40 \times 80\text{ px}$): weathered fluted basalt pillar with chipped corners, creeping moss, and faint celestial rune fissure.
+  - Upgraded `res://scenes/environment/bush.tscn` to use `bush_forest.png` while preserving procedural ambient swaying logic (`forest_bush.gd`).
+  - Upgraded `res://scenes/environment/pillar.tscn` to use `pillar_ancient.png` with contact shadow and compact foot collision.
+  - Registered assets in `docs/asset-licenses.md` under Apache License 2.0.
+- Recomposed Forest Environment in `res://scenes/world.tscn`:
+  - Replaced uniform rows with organic tree clusters, open sunlit clearings, a sheltered backdrop copse behind the cabin, and a solemn ringed glade around the Ancient Runestone.
+  - Framed pathways with natural boulder and bush outcroppings, keeping all player navigation routes and interaction triggers completely unobstructed.
+- Refined Exploration UI in `res://scenes/ui/exploration_ui.tscn`:
+  - Replaced blocky developer-overlay box with a sleek, minimalist translucent control pill (`WASD Move • E Interact`).
+  - Redesigned Moonleaf Herb counter with right-aligned botanical badge styling.
+  - Polished interaction prompt with warm amber border, subtle drop shadow, and high-contrast typography.
+- Updated `docs/art-direction.md` with prop dimension specifications, harmonic terrain clustering rules, and branched trail hierarchy.
+- Validated via automated test suite (`test_phase5_1.gd`): verified all 10 textures, absence of pale root halos, painterly bushes & pillars, branched trail waypoints, movement, gathering, discovery, and world scene composition with 0 failures.
+
 ## Phase 5 — Art Direction, Asset Pipeline & Visual Overhaul (2026-10-19)
 - Established Art Direction Guide in `docs/art-direction.md`:
   - Defined two atmospheric modes: Living World (rich forest greens, warm sunlight, weathered timber) and Forgotten World (ancient basalt, chipped stone, celestial cyan luminescence).
