@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/environment/cabin_exterior.gd" id="1_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_door"]
+radius = 28.0
+
+[node name="CabinExterior" type="StaticBody2D"]
+script = ExtResource("1_script")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+color = Color(0.06, 0.1, 0.08, 0.45)
+polygon = PackedVector2Array(-74, -14, 0, -52, 74, -14, 0, 22)
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Firewood" type="Polygon2D" parent="Visuals"]
+color = Color(0.48, 0.35, 0.22, 1)
+polygon = PackedVector2Array(-66, -10, -52, -4, -54, -20, -68, -16)
+
+[node name="CabinWalls" type="Polygon2D" parent="Visuals"]
+color = Color(0.42, 0.32, 0.22, 1)
+polygon = PackedVector2Array(-64, -16, 0, 16, 64, -16, 64, -56, 0, -32, -64, -56)
+
+[node name="WallPlankLines" type="Polygon2D" parent="Visuals"]
+color = Color(0.32, 0.24, 0.16, 0.8)
+polygon = PackedVector2Array(-62, -26, 0, 4, 62, -26, 62, -30, 0, 0, -62, -30)
+
+[node name="DoorwayRecess" type="Polygon2D" parent="Visuals"]
+color = Color(0.12, 0.09, 0.06, 1)
+polygon = PackedVector2Array(-12, 10, 12, 10, 12, -26, -12, -26)
+
+[node name="DoorwayWarmth" type="Polygon2D" parent="Visuals"]
+color = Color(0.96, 0.72, 0.35, 0.6)
+polygon = PackedVector2Array(-8, 8, 8, 8, 6, -20, -6, -20)
+
+[node name="DoorFrame" type="Polygon2D" parent="Visuals"]
+color = Color(0.28, 0.2, 0.13, 1)
+polygon = PackedVector2Array(-14, 12, -10, 12, -10, -28, 10, -28, 10, 12, 14, 12, 14, -31, -14, -31)
+
+[node name="WindowFrame" type="Polygon2D" parent="Visuals"]
+color = Color(0.28, 0.2, 0.13, 1)
+polygon = PackedVector2Array(24, -6, 48, -18, 48, -34, 24, -22)
+
+[node name="Window" type="Polygon2D" parent="Visuals"]
+color = Color(0.95, 0.76, 0.38, 0.85)
+polygon = PackedVector2Array(26, -8, 46, -18, 46, -32, 26, -22)
+
+[node name="Roof" type="Polygon2D" parent="Visuals"]
+color = Color(0.48, 0.32, 0.2, 1)
+polygon = PackedVector2Array(-74, -20, 0, 16, 74, -20, 0, -78)
+
+[node name="RoofShading" type="Polygon2D" parent="Visuals"]
+color = Color(0.38, 0.25, 0.16, 0.6)
+polygon = PackedVector2Array(-74, -20, 0, 16, 0, -78)
+
+[node name="Chimney" type="Node2D" parent="Visuals"]
+position = Vector2(-36, -42)
+
+[node name="ChimneyStack" type="Polygon2D" parent="Visuals/Chimney"]
+color = Color(0.38, 0.42, 0.4, 1)
+polygon = PackedVector2Array(-8, 0, 8, 0, 7, -36, -7, -36)
+
+[node name="ChimneyCap" type="Polygon2D" parent="Visuals/Chimney"]
+color = Color(0.28, 0.32, 0.3, 1)
+polygon = PackedVector2Array(-10, -36, 10, -36, 8, -42, -8, -42)
+
+[node name="SmokeParticles" type="CPUParticles2D" parent="Visuals/Chimney"]
+position = Vector2(0, -42)
+amount = 6
+lifetime = 2.5
+emission_shape = 1
+emission_sphere_radius = 4.0
+gravity = Vector2(4, -10)
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0.8, 0.85, 0.82, 0.35)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-64, -16, -20, 4, -20, -10, 20, -10, 20, 4, 64, -16, 40, -42, -40, -42)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(0, 12)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_door")

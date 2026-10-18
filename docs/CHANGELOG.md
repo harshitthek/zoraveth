@@ -1,5 +1,33 @@
 # Changelog
 
+## Phase 4 — The Cabin, The Stranger & The First Encounter (2026-10-19)
+- Created reusable isometric Cabin Exterior in `res://scenes/environment/cabin_exterior.tscn` and `res://scripts/environment/cabin_exterior.gd`:
+  - Timber log walls, shingle/thatch roof, warm amber doorway glow, stone chimney with smoke particles (`CPUParticles2D`), and stacked firewood.
+  - Solid wall collision polygon leaving the front doorway clear.
+  - Placed in the Entry Clearing at `(480, 330)` with pine backdrop tree and unobstructed approach from the meadow.
+  - Doorway interaction trigger (layer 4) with `enter_requested` signal and interaction priority 10.
+- Created reusable isometric Cabin Interior in `res://scenes/interior/cabin_interior.tscn` and `res://scripts/interior/cabin_interior.gd`:
+  - Cozy $600 \times 450$ interior layout with timber plank floor, dark timber walls, stone fireplace with animated hearth flame flicker, resting bed with quilt/pillow, wooden dining table with clay bowl, and practical bookshelf.
+  - Perimeter collision boundaries and furniture collision preventing getting stuck.
+  - Exit doorway interaction trigger prompting `[E] Exit to Forest` with `exit_requested` signal.
+  - Safe spawn position `(230, 240)` inside doorway threshold.
+- Created Elderly Stranger NPC in `res://scenes/npc/elderly_stranger.tscn` and `res://scripts/npc/elderly_stranger.gd`:
+  - Warm wool-sage cloak, tunic, silver-white beard/hair, carved walking staff, and subtle breathing idle movement.
+  - Proximity interaction trigger prompting `[E] Speak with Elderly Stranger` with priority 10.
+  - Full dialogue sequence acknowledging awakening, explaining rescue after strange thunder and tremors, providing warmth/rest, and giving advice for exploring the woods, with follow-up ambient dialogue.
+  - Preserved 100% of protected story canon (stranger's identity, legendary battle mystery, cellar/hidden path reserved).
+- Implemented dedicated Dialogue UI in `res://scenes/ui/dialogue_ui.tscn` and `res://scripts/ui/dialogue_ui.gd`:
+  - CanvasLayer 10 with styled panel, amber speaker label, dialogue body text, continue prompt, and choice buttons.
+  - Supports branching dialogue choices (inquiring about tremors vs thanking the stranger).
+  - Automatically locks player physics movement (`is_movement_locked = true`) during active conversation, preventing accidental movement or conflicting inputs.
+- Implemented robust scene transitions in `res://scripts/world/forest_world.gd`:
+  - Additive subscene architecture with CanvasLayer 20 `TransitionOverlay` fade transitions.
+  - Reparents player node cleanly into `CabinInterior.sortable_entities` on entry and back to forest `SortableEntities` on exit.
+  - Switches camera limits dynamically between cabin bounds (`40, -20, 560, 380`) and forest bounds (`60, 80, 1600, 860`).
+  - 100% preserves in-memory forest gathering node harvest states, runestone discovery status, and herb counters across repeated transitions.
+- Added interaction priority weighting in `res://scripts/player/player.gd` so high-priority doorways and NPC interactions take precedence over gathering nodes.
+- Validated via automated script test (`test_phase4.gd`): verified scene structure, pre-cabin gathering, cabin entry, interior camera framing, stranger dialogue progression, choice branching, player movement lock during conversation, cabin exit, exterior repositioning, and 100% preservation of forest session state.
+
 ## Phase 3 — First Forest Vertical Slice (2026-10-19)
 - Expanded world environment in `res://scenes/world.tscn` to a continuous $28 \times 22$ isometric grid featuring 3 interconnected subregions:
   - **Entry Clearing (SW):** Sheltered starting copse surrounded by pine trees and faceted rocks.

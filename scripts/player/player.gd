@@ -13,6 +13,7 @@ signal clue_discovered(title: String, description: String)
 ## Base movement speed in pixels per second.
 @export var speed: float = 200.0
 
+var is_movement_locked: bool = false
 var collected_herbs: int = 0
 var _nearby_interactables: Array[Node] = []
 var _current_target: Node = null
@@ -27,6 +28,11 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if is_movement_locked:
+		velocity = Vector2.ZERO
+		_update_interactable_focus()
+		return
+
 	# Input.get_vector automatically normalizes diagonal input,
 	# ensuring movement speed is consistent in all directions.
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -36,6 +42,9 @@ func _physics_process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_movement_locked:
+		return
+
 	if event.is_action_pressed("interact") and _current_target != null:
 		if _current_target.has_method("can_interact") and _current_target.can_interact():
 			_current_target.interact(self)
@@ -81,14 +90,18 @@ func _on_clue_signal(title: String, description: String) -> void:
 
 func _update_interactable_focus() -> void:
 	var best_target: Node = null
+	var highest_priority: int = -1
 	var min_dist_sq: float = INF
 
 	var active_list: Array[Node] = []
 	for obj in _nearby_interactables:
 		if is_instance_valid(obj) and obj.has_method("can_interact") and obj.can_interact():
 			active_list.append(obj)
+			var priority: int = obj.get_interaction_priority() if obj.has_method("get_interaction_priority") else 0
 			var dist_sq: float = global_position.distance_squared_to(obj.global_position)
-			if dist_sq < min_dist_sq:
+
+			if priority > highest_priority or (priority == highest_priority and dist_sq < min_dist_sq):
+				highest_priority = priority
 				min_dist_sq = dist_sq
 				best_target = obj
 

@@ -9,7 +9,7 @@
 - **Engine:** Godot 4.7.2 (Official Stable).
 - **Renderer:** Compatibility (`gl_compatibility`).
 - **Main Scene:** `res://scenes/world.tscn`.
-- **Phase:** Phase 3 (First Forest Vertical Slice) validated.
+- **Phase:** Phase 4 (The Cabin, The Stranger & The First Encounter) validated.
 
 ## Project Structure
 
@@ -20,31 +20,43 @@ zoraveth/
 ├── LICENSE                    # Apache 2.0 open-source license
 ├── project.godot              # Godot 4.7 engine configuration
 ├── scenes/
-│   ├── world.tscn             # Project main scene (First Forest vertical slice)
+│   ├── world.tscn             # Project main scene (First Forest & Cabin encounter)
 │   ├── player/
 │   │   └── player.tscn        # Reusable Player CharacterBody2D scene
 │   ├── environment/
+│   │   ├── cabin_exterior.tscn# Sortable CabinExterior scene with smoke chimney
 │   │   ├── tree.tscn          # Sortable IsometricTree scene
 │   │   ├── pillar.tscn        # Sortable IsometricPillar scene
 │   │   ├── rock.tscn          # Sortable ForestRock scene
 │   │   └── bush.tscn          # Ambient swaying ForestBush scene
+│   ├── interior/
+│   │   └── cabin_interior.tscn# Cozy isometric cabin interior with fireplace & bed
+│   ├── npc/
+│   │   └── elderly_stranger.tscn # Reusable Elderly Stranger NPC scene
 │   ├── interactables/
 │   │   ├── moonleaf_herb.tscn # Gatherable Moonleaf Herb scene
 │   │   └── ancient_runestone.tscn # Secret Ancient Runestone discovery scene
 │   └── ui/
+│       ├── dialogue_ui.tscn   # Modal dialogue panel with choice branching
 │       └── exploration_ui.tscn# Contextual prompt, herb counter & discovery card
 ├── scripts/
 │   ├── player/
-│   │   └── player.gd          # Player 2D movement, collision & interaction detector
+│   │   └── player.gd          # Player 2D movement, collision, focus & locking
 │   ├── environment/
+│   │   ├── cabin_exterior.gd  # Cabin exterior doorway entry trigger
 │   │   └── forest_bush.gd     # Procedural ambient swaying logic
+│   ├── interior/
+│   │   └── cabin_interior.gd  # Cabin interior controller & doorway exit trigger
+│   ├── npc/
+│   │   └── elderly_stranger.gd# Stranger NPC dialogue sequences & priority
 │   ├── interactables/
 │   │   ├── moonleaf_herb.gd   # Herb harvest state and petal pulse
 │   │   └── ancient_runestone.gd # Inscribed clue landmark discovery logic
 │   ├── ui/
+│   │   ├── dialogue_ui.gd     # Dialogue progression and choice controller
 │   │   └── exploration_ui.gd  # Exploration HUD management
 │   └── world/
-│       ├── forest_world.gd    # World coordinator & camera bounds
+│       ├── forest_world.gd    # World coordinator, camera bounds & transitions
 │       └── isometric_ground.gd# 64x32 2:1 isometric diamond grid & path renderer
 └── docs/                      # Complete design bible and system specifications
     ├── asset-licenses.md      # Asset provenance and license ledger

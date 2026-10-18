@@ -32,11 +32,11 @@ No fixed dates. Complete and validate each phase before expanding scope.
 **Done when:** exploration is legible and one optional discovery exists. (Completed and validated).
 
 ## Phase 4 — Cabin and NPC
-- [ ] Create cabin and clearing.
-- [ ] Add interactable elderly stranger and basic dialogue.
-- [ ] Establish kindness and subtle unexplained details.
-- [ ] Preserve the stranger's identity and the underground revelation.
-**Done when:** player can approach and interact and the atmosphere works.
+- [x] Create cabin and clearing (isometric cabin exterior with smoke chimney and clear approach in Entry Clearing).
+- [x] Add interactable elderly stranger and basic dialogue (DialogueUI with choices, movement locking, warm hearth interior).
+- [x] Establish kindness and subtle unexplained details (rest, warmth, strange thunder, distant tremors).
+- [x] Preserve the stranger's identity and the underground revelation (cellar/hidden path untouched, identity unresolved).
+**Done when:** player can approach and interact and the atmosphere works. (Completed and validated).
 
 ## Phase 5 — Complete mini-adventure
 - [ ] Add one creature encounter and minimal combat.
