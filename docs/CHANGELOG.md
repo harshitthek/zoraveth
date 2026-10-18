@@ -1,5 +1,32 @@
 # Changelog
 
+## Phase 3 — First Forest Vertical Slice (2026-10-19)
+- Expanded world environment in `res://scenes/world.tscn` to a continuous $28 \times 22$ isometric grid featuring 3 interconnected subregions:
+  - **Entry Clearing (SW):** Sheltered starting copse surrounded by pine trees and faceted rocks.
+  - **Woodland Route:** Winding beaten-earth trail with natural turns and a secluded herb alcove.
+  - **Discovery Grove (NE):** Ancient ceremonial glade flanked by stone pillars, mossy boulders, and the Ancient Runestone.
+- Upgraded `res://scripts/world/isometric_ground.gd` with parametric distance calculation for winding path waypoints, dynamically rendering beaten-earth and mossy path tiles (`path_color_a`, `path_color_b`) along the natural trail.
+- Implemented gathering loop with Moonleaf Herb:
+  - Created `res://scenes/interactables/moonleaf_herb.tscn` and `res://scripts/interactables/moonleaf_herb.gd` featuring biological pulse animations, interaction triggers (layer 4), visual harvest shrink revealing stem remnants, and single-collection state protection.
+  - Placed 3 gatherable Moonleaf Herb nodes across the Entry Clearing, Woodland Route alcove, and Discovery Grove.
+- Implemented discovery landmark with Ancient Inscribed Runestone:
+  - Created `res://scenes/interactables/ancient_runestone.tscn` and `res://scripts/interactables/ancient_runestone.gd` featuring weathered monolith visuals, glowing celestial runes, floating soul motes (`CPUParticles2D`), and session discovery tracking.
+  - Inscription provides atmospheric canon lore without prematurely resolving protected mysteries.
+- Created reusable environmental assets:
+  - `res://scenes/environment/rock.tscn`: Multi-faceted forest boulder with base collision footprint.
+  - `res://scenes/environment/bush.tscn` and `res://scripts/environment/forest_bush.gd`: Multi-toned forest bush with randomized phase ambient sway.
+- Upgraded player and interaction systems:
+  - Added `interact` action (Key E) to Godot Input Map in `project.godot`.
+  - Added `InteractionDetector` (`Area2D`, mask 4) in `res://scenes/player/player.tscn` and `res://scripts/player/player.gd`.
+  - Implemented proximity focus targeting and decoupled signals: `interactable_focus_changed`, `resource_collected`, and `clue_discovered`.
+  - Enabled smooth camera following on `Camera2D` with boundaries dynamically set by `res://scripts/world/forest_world.gd` (`limit_left = 60`, `limit_top = 80`, `limit_right = 1600`, `limit_bottom = 860`).
+- Implemented minimal exploration HUD in `res://scenes/ui/exploration_ui.tscn` and `res://scripts/ui/exploration_ui.gd`:
+  - Contextual interaction prompt pill (`[E] Gather Moonleaf Herb` / `[E] Inspect...`).
+  - Compact herb collection counter (`Moonleaf Herbs: X / 3`).
+  - Centered modal discovery card with tweened fade-in and automatic fade dismissal.
+- Validated via automated script test (`test_phase3.gd`) verifying all 4 movement directions, diagonal normalization, herb gathering and duplicate prevention, runestone clue discovery, camera limits, and complete woodland route traversal from Entry Clearing to Discovery Grove.
+- Passed mandatory CodeRabbit static review (`coderabbit review --agent --include-untracked --uncommitted`) with 0 findings.
+
 ## Phase 2 — Isometric Visual Test (2026-10-19)
 - Established 2:1 isometric diamond projection convention with 64x32 pixel tiles (`tile_width = 64.0`, `tile_height = 32.0`).
 - Implemented `res://scripts/world/isometric_ground.gd` drawing a 14x14 isometric diamond clearing with alternating forest terrain palette.

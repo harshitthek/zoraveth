@@ -25,11 +25,11 @@ No fixed dates. Complete and validate each phase before expanding scope.
 **Done when:** character/environment overlap predictably and the scene runs stably on target hardware.
 
 ## Phase 3 — First forest
-- [ ] Build a bounded but exploratory continuous forest with natural routes.
-- [ ] Add a few subregions and memorable landmarks.
-- [ ] Add gathering placeholders and one hidden clue.
-- [ ] Add day/night ambience only if it does not block core play.
-**Done when:** exploration is legible and one optional discovery exists.
+- [x] Build a bounded but exploratory continuous forest with natural routes.
+- [x] Add a few subregions and memorable landmarks.
+- [x] Add gathering placeholders and one hidden clue.
+- [x] Add day/night ambience only if it does not block core play (ambient swaying bushes, soul motes, terrain transitions).
+**Done when:** exploration is legible and one optional discovery exists. (Completed and validated).
 
 ## Phase 4 — Cabin and NPC
 - [ ] Create cabin and clearing.

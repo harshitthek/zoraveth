@@ -1,110 +1,208 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=14 format=3]
 
-[ext_resource type="Script" path="res://scripts/world/isometric_ground.gd" id="1_ground_script"]
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" path="res://scenes/environment/tree.tscn" id="3_tree"]
-[ext_resource type="PackedScene" path="res://scenes/environment/pillar.tscn" id="4_pillar"]
+[ext_resource type="Script" path="res://scripts/world/forest_world.gd" id="1_world_script"]
+[ext_resource type="Script" path="res://scripts/world/isometric_ground.gd" id="2_ground_script"]
+[ext_resource type="PackedScene" path="res://scenes/ui/exploration_ui.tscn" id="3_ui"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="4_player"]
+[ext_resource type="PackedScene" path="res://scenes/environment/tree.tscn" id="5_tree"]
+[ext_resource type="PackedScene" path="res://scenes/environment/pillar.tscn" id="6_pillar"]
+[ext_resource type="PackedScene" path="res://scenes/environment/rock.tscn" id="7_rock"]
+[ext_resource type="PackedScene" path="res://scenes/environment/bush.tscn" id="8_bush"]
+[ext_resource type="PackedScene" path="res://scenes/interactables/moonleaf_herb.tscn" id="9_herb"]
+[ext_resource type="PackedScene" path="res://scenes/interactables/ancient_runestone.tscn" id="10_runestone"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_horizontal"]
-size = Vector2(1152, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_horiz_boundary"]
+size = Vector2(1700, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vertical"]
-size = Vector2(32, 600)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vert_boundary"]
+size = Vector2(32, 900)
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_world_script")
 
 [node name="Backdrop" type="ColorRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.09, 0.12, 0.1, 1)
+offset_right = 1800.0
+offset_bottom = 1000.0
+color = Color(0.06, 0.09, 0.07, 1)
 
 [node name="IsometricGround" type="Node2D" parent="."]
-script = ExtResource("1_ground_script")
+script = ExtResource("2_ground_script")
 tile_width = 64.0
 tile_height = 32.0
-grid_size = Vector2i(14, 14)
-grid_origin = Vector2(576, 120)
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Instructions" type="Label" parent="UI"]
-offset_left = 32.0
-offset_top = 24.0
-offset_right = 720.0
-offset_bottom = 54.0
-text = "Zoraveth — Phase 2: Isometric Visual Test | 64x32 Diamond Grid & Y-Sorting | Move: WASD / Arrows"
+grid_size = Vector2i(28, 22)
+grid_origin = Vector2(720, 100)
 
 [node name="SortableEntities" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="TreeNorth" parent="SortableEntities" instance=ExtResource("3_tree")]
-position = Vector2(576, 260)
+[node name="TreeEntryNW1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(240, 420)
 
-[node name="TreeWest" parent="SortableEntities" instance=ExtResource("3_tree")]
-position = Vector2(380, 360)
+[node name="TreeEntryNW2" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(190, 480)
 
-[node name="TreeEast" parent="SortableEntities" instance=ExtResource("3_tree")]
-position = Vector2(772, 360)
+[node name="TreeEntryW" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(150, 540)
 
-[node name="PillarCenter" parent="SortableEntities" instance=ExtResource("4_pillar")]
-position = Vector2(576, 420)
+[node name="TreeEntrySW" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(230, 620)
 
-[node name="PillarSouthWest" parent="SortableEntities" instance=ExtResource("4_pillar")]
-position = Vector2(460, 480)
+[node name="TreeEntryS" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(330, 630)
 
-[node name="Player" parent="SortableEntities" instance=ExtResource("2_player")]
-position = Vector2(576, 330)
+[node name="TreeEntrySE" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(440, 620)
+
+[node name="TreeEntryN" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(330, 380)
+
+[node name="TreeEntryNE" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(460, 390)
+
+[node name="RockEntry1" parent="SortableEntities" instance=ExtResource("7_rock")]
+position = Vector2(290, 530)
+
+[node name="RockEntry2" parent="SortableEntities" instance=ExtResource("7_rock")]
+position = Vector2(450, 440)
+
+[node name="BushEntry1" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(350, 430)
+
+[node name="BushEntry2" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(390, 550)
+
+[node name="HerbEntry" parent="SortableEntities" instance=ExtResource("9_herb")]
+position = Vector2(420, 520)
+
+[node name="TreeRouteN1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(580, 400)
+
+[node name="TreeRouteN2" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(700, 410)
+
+[node name="TreeRouteN3" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(830, 410)
+
+[node name="TreeRouteN4" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(960, 420)
+
+[node name="TreeRouteS1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(570, 590)
+
+[node name="TreeRouteS2" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(700, 600)
+
+[node name="TreeRouteS3" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(890, 610)
+
+[node name="TreeRouteS4" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1030, 610)
+
+[node name="RockRoute1" parent="SortableEntities" instance=ExtResource("7_rock")]
+position = Vector2(640, 455)
+
+[node name="RockRoute2" parent="SortableEntities" instance=ExtResource("7_rock")]
+position = Vector2(850, 455)
+
+[node name="BushRoute1" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(690, 480)
+
+[node name="BushRoute2" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(790, 530)
+
+[node name="BushRoute3" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(940, 490)
+
+[node name="PillarRoute" parent="SortableEntities" instance=ExtResource("6_pillar")]
+position = Vector2(890, 460)
+
+[node name="TreeAlcove1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(740, 690)
+
+[node name="TreeAlcove2" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(840, 700)
+
+[node name="HerbAlcove" parent="SortableEntities" instance=ExtResource("9_herb")]
+position = Vector2(790, 645)
+
+[node name="RockAlcove" parent="SortableEntities" instance=ExtResource("7_rock")]
+position = Vector2(740, 640)
+
+[node name="TreeGroveNW" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1120, 460)
+
+[node name="TreeGroveN1" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1220, 430)
+
+[node name="TreeGroveN2" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1330, 430)
+
+[node name="TreeGroveNE" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1420, 470)
+
+[node name="TreeGroveE" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1460, 550)
+
+[node name="TreeGroveSE" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1410, 640)
+
+[node name="TreeGroveS" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1300, 660)
+
+[node name="TreeGroveSW" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1170, 640)
+
+[node name="TreeGroveW" parent="SortableEntities" instance=ExtResource("5_tree")]
+position = Vector2(1100, 560)
+
+[node name="PillarGroveLeft" parent="SortableEntities" instance=ExtResource("6_pillar")]
+position = Vector2(1200, 510)
+
+[node name="PillarGroveRight" parent="SortableEntities" instance=ExtResource("6_pillar")]
+position = Vector2(1330, 510)
+
+[node name="AncientRunestone" parent="SortableEntities" instance=ExtResource("10_runestone")]
+position = Vector2(1264, 545)
+
+[node name="HerbGrove" parent="SortableEntities" instance=ExtResource("9_herb")]
+position = Vector2(1350, 595)
+
+[node name="RockGrove" parent="SortableEntities" instance=ExtResource("7_rock")]
+position = Vector2(1210, 590)
+
+[node name="BushGrove1" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(1240, 490)
+
+[node name="BushGrove2" parent="SortableEntities" instance=ExtResource("8_bush")]
+position = Vector2(1330, 560)
+
+[node name="Player" parent="SortableEntities" instance=ExtResource("4_player")]
+position = Vector2(368, 480)
 
 [node name="Boundaries" type="Node2D" parent="."]
 
-[node name="TopWall" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(576, 16)
+[node name="TopBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(850, 70)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/TopWall"]
-shape = SubResource("RectangleShape2D_horizontal")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/TopBoundary"]
+shape = SubResource("RectangleShape2D_horiz_boundary")
 
-[node name="Visual" type="ColorRect" parent="Boundaries/TopWall"]
-offset_left = -576.0
-offset_top = -16.0
-offset_right = 576.0
-offset_bottom = 16.0
-color = Color(0.2, 0.24, 0.22, 1)
+[node name="BottomBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(850, 870)
 
-[node name="BottomWall" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(576, 632)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/BottomBoundary"]
+shape = SubResource("RectangleShape2D_horiz_boundary")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/BottomWall"]
-shape = SubResource("RectangleShape2D_horizontal")
+[node name="LeftBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(50, 470)
 
-[node name="Visual" type="ColorRect" parent="Boundaries/BottomWall"]
-offset_left = -576.0
-offset_top = -16.0
-offset_right = 576.0
-offset_bottom = 16.0
-color = Color(0.2, 0.24, 0.22, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftBoundary"]
+shape = SubResource("RectangleShape2D_vert_boundary")
 
-[node name="LeftWall" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(16, 324)
+[node name="RightBoundary" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(1610, 470)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/LeftWall"]
-shape = SubResource("RectangleShape2D_vertical")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightBoundary"]
+shape = SubResource("RectangleShape2D_vert_boundary")
 
-[node name="Visual" type="ColorRect" parent="Boundaries/LeftWall"]
-offset_left = -16.0
-offset_top = -300.0
-offset_right = 16.0
-offset_bottom = 300.0
-color = Color(0.2, 0.24, 0.22, 1)
-
-[node name="RightWall" type="StaticBody2D" parent="Boundaries"]
-position = Vector2(1136, 324)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/RightWall"]
-shape = SubResource("RectangleShape2D_vertical")
-
-[node name="Visual" type="ColorRect" parent="Boundaries/RightWall"]
-offset_left = -16.0
-offset_top = -300.0
-offset_right = 16.0
-offset_bottom = 300.0
-color = Color(0.2, 0.24, 0.22, 1)
+[node name="ExplorationUI" parent="." instance=ExtResource("3_ui")]

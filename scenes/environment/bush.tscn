@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/environment/forest_bush.gd" id="1_script"]
+
+[node name="ForestBush" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+color = Color(0.06, 0.1, 0.07, 0.4)
+polygon = PackedVector2Array(-14, 0, 0, -6, 14, 0, 0, 6)
+
+[node name="Foliage" type="Node2D" parent="."]
+
+[node name="LeafClusterLeft" type="Polygon2D" parent="Foliage"]
+color = Color(0.18, 0.38, 0.22, 1)
+polygon = PackedVector2Array(-14, 0, -18, -12, -10, -22, -2, -18, 0, 0)
+
+[node name="LeafClusterRight" type="Polygon2D" parent="Foliage"]
+color = Color(0.22, 0.44, 0.26, 1)
+polygon = PackedVector2Array(0, 0, 2, -18, 10, -22, 18, -12, 14, 0)
+
+[node name="LeafCenter" type="Polygon2D" parent="Foliage"]
+color = Color(0.26, 0.5, 0.3, 1)
+polygon = PackedVector2Array(-8, -6, -4, -20, 0, -26, 4, -20, 8, -6)

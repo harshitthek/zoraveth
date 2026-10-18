@@ -9,7 +9,7 @@
 - **Engine:** Godot 4.7.2 (Official Stable).
 - **Renderer:** Compatibility (`gl_compatibility`).
 - **Main Scene:** `res://scenes/world.tscn`.
-- **Phase:** Phase 2 (Isometric Visual Test) validated.
+- **Phase:** Phase 3 (First Forest Vertical Slice) validated.
 
 ## Project Structure
 
@@ -20,17 +20,32 @@ zoraveth/
 ├── LICENSE                    # Apache 2.0 open-source license
 ├── project.godot              # Godot 4.7 engine configuration
 ├── scenes/
-│   ├── world.tscn             # Project main scene (isometric visual test)
+│   ├── world.tscn             # Project main scene (First Forest vertical slice)
 │   ├── player/
 │   │   └── player.tscn        # Reusable Player CharacterBody2D scene
-│   └── environment/
-│       ├── tree.tscn          # Sortable IsometricTree scene
-│       └── pillar.tscn        # Sortable IsometricPillar scene
+│   ├── environment/
+│   │   ├── tree.tscn          # Sortable IsometricTree scene
+│   │   ├── pillar.tscn        # Sortable IsometricPillar scene
+│   │   ├── rock.tscn          # Sortable ForestRock scene
+│   │   └── bush.tscn          # Ambient swaying ForestBush scene
+│   ├── interactables/
+│   │   ├── moonleaf_herb.tscn # Gatherable Moonleaf Herb scene
+│   │   └── ancient_runestone.tscn # Secret Ancient Runestone discovery scene
+│   └── ui/
+│       └── exploration_ui.tscn# Contextual prompt, herb counter & discovery card
 ├── scripts/
 │   ├── player/
-│   │   └── player.gd          # Player 2D movement and collision script
+│   │   └── player.gd          # Player 2D movement, collision & interaction detector
+│   ├── environment/
+│   │   └── forest_bush.gd     # Procedural ambient swaying logic
+│   ├── interactables/
+│   │   ├── moonleaf_herb.gd   # Herb harvest state and petal pulse
+│   │   └── ancient_runestone.gd # Inscribed clue landmark discovery logic
+│   ├── ui/
+│   │   └── exploration_ui.gd  # Exploration HUD management
 │   └── world/
-│       └── isometric_ground.gd# 64x32 2:1 isometric diamond grid renderer
+│       ├── forest_world.gd    # World coordinator & camera bounds
+│       └── isometric_ground.gd# 64x32 2:1 isometric diamond grid & path renderer
 └── docs/                      # Complete design bible and system specifications
     ├── asset-licenses.md      # Asset provenance and license ledger
     ├── context.md             # High-level design context and world pillars
