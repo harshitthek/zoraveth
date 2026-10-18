@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/npc/elderly_stranger.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/characters/elderly_stranger.png" id="2_texture"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_feet"]
 size = Vector2(18, 10)
@@ -21,33 +22,9 @@ shape = SubResource("RectangleShape2D_feet")
 
 [node name="Visuals" type="Node2D" parent="."]
 
-[node name="Cloak" type="Polygon2D" parent="Visuals"]
-color = Color(0.28, 0.38, 0.3, 1)
-polygon = PackedVector2Array(-10, 0, 10, 0, 8, -26, -8, -26)
-
-[node name="Tunic" type="Polygon2D" parent="Visuals"]
-color = Color(0.72, 0.68, 0.55, 1)
-polygon = PackedVector2Array(-3, 0, 3, 0, 2, -22, -2, -22)
-
-[node name="Head" type="Polygon2D" parent="Visuals"]
-color = Color(0.85, 0.72, 0.6, 1)
-polygon = PackedVector2Array(-6, -26, 6, -26, 5, -36, -5, -36)
-
-[node name="Hair" type="Polygon2D" parent="Visuals"]
-color = Color(0.92, 0.92, 0.95, 1)
-polygon = PackedVector2Array(-7, -30, -5, -38, 5, -38, 7, -30, 6, -34, -6, -34)
-
-[node name="Beard" type="Polygon2D" parent="Visuals"]
-color = Color(0.92, 0.92, 0.95, 1)
-polygon = PackedVector2Array(-4, -28, 4, -28, 3, -20, 0, -17, -3, -20)
-
-[node name="Staff" type="Polygon2D" parent="Visuals"]
-color = Color(0.42, 0.3, 0.18, 1)
-polygon = PackedVector2Array(9, 2, 11, 2, 10, -34, 8, -34)
-
-[node name="StaffGem" type="Polygon2D" parent="Visuals"]
-color = Color(0.85, 0.65, 0.25, 1)
-polygon = PackedVector2Array(7, -34, 11, -34, 11, -37, 7, -37)
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -26)
+texture = ExtResource("2_texture")
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 4

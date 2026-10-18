@@ -38,12 +38,16 @@ No fixed dates. Complete and validate each phase before expanding scope.
 - [x] Preserve the stranger's identity and the underground revelation (cellar/hidden path untouched, identity unresolved).
 **Done when:** player can approach and interact and the atmosphere works. (Completed and validated).
 
-## Phase 5 — Complete mini-adventure
-- [ ] Add one creature encounter and minimal combat.
-- [ ] Add one gatherable resource and inventory feedback.
-- [ ] Add one meaningful, clue-supported discovery.
-- [ ] Provide a short start-to-finish path.
-**Done when:** a new player can explore, interact, fight, gather and discover something.
+## Phase 5 — Art direction, asset pipeline & visual overhaul
+- [x] Establish comprehensive art direction guide (`docs/art-direction.md`) with Living World and Forgotten World atmospheric palettes.
+- [x] Implement asset pipeline and integrate 8 handcrafted transparent PNG assets for pine trees, ancient trees, mossy rocks, cabin exterior, ancient runestone, moonleaf herbs, elderly stranger, and player adventurer.
+- [x] Update asset licensing catalog in `docs/asset-licenses.md` under Apache 2.0.
+- [x] Upgrade terrain renderer to multi-toned deterministic organic grass, soft path transitions, and micro-details, eliminating geometric wireframes.
+- [x] Implement foot-origin `(0, 0)` anchor conventions across all sprites with pass-behind canopy sorting and compact collision footprints.
+- [x] Add directional sprite flipping to Player based on velocity.
+- [x] Add ambient particle effects (runestone soul motes, cabin chimney smoke, fireplace embers).
+- [x] Verify visual overhaul with automated headless test suite (`test_phase5.gd`).
+**Done when:** prototype looks cohesive, painterly, and atmospheric without breaking existing mechanics. (Completed and validated).
 
 ## Phase 6 — Spellblade foundation
 - [ ] Basic weapon attack.

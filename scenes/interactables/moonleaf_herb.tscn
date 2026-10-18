@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/interactables/moonleaf_herb.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/interactables/moonleaf_herb.png" id="2_texture"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_trigger"]
 radius = 24.0
@@ -14,35 +15,18 @@ script = ExtResource("1_script")
 color = Color(0.05, 0.08, 0.06, 0.45)
 polygon = PackedVector2Array(-8, 0, 0, -3, 8, 0, 0, 3)
 
-[node name="Stem" type="Polygon2D" parent="Visuals"]
-color = Color(0.18, 0.4, 0.22, 1)
-polygon = PackedVector2Array(-2, 0, 2, 0, 1, -8, -1, -8)
-
 [node name="Petals" type="Node2D" parent="Visuals"]
-position = Vector2(0, -8)
 
-[node name="PetalLeft" type="Polygon2D" parent="Visuals/Petals"]
-color = Color(0.25, 0.82, 0.72, 1)
-polygon = PackedVector2Array(0, 0, -6, -4, -8, -10, -2, -7)
-
-[node name="PetalRight" type="Polygon2D" parent="Visuals/Petals"]
-color = Color(0.3, 0.88, 0.78, 1)
-polygon = PackedVector2Array(0, 0, 6, -4, 8, -10, 2, -7)
-
-[node name="PetalCenter" type="Polygon2D" parent="Visuals/Petals"]
-color = Color(0.4, 0.95, 0.85, 1)
-polygon = PackedVector2Array(0, 0, -3, -6, 0, -12, 3, -6)
-
-[node name="GlowCenter" type="Polygon2D" parent="Visuals/Petals"]
-color = Color(0.95, 0.92, 0.55, 1)
-polygon = PackedVector2Array(-2, -6, 0, -8, 2, -6, 0, -4)
+[node name="Sprite2D" type="Sprite2D" parent="Visuals/Petals"]
+position = Vector2(0, -14)
+texture = ExtResource("2_texture")
 
 [node name="HarvestedRemnant" type="Node2D" parent="Visuals"]
 visible = false
 
 [node name="Stump" type="Polygon2D" parent="Visuals/HarvestedRemnant"]
-color = Color(0.28, 0.32, 0.25, 0.8)
-polygon = PackedVector2Array(-2, 0, 2, 0, 1, -3, -1, -3)
+color = Color(0.24, 0.32, 0.22, 0.8)
+polygon = PackedVector2Array(-3, 0, 3, 0, 2, -4, -2, -4)
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 4

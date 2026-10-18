@@ -19,6 +19,7 @@ var _nearby_interactables: Array[Node] = []
 var _current_target: Node = null
 
 @onready var interaction_detector: Area2D = $InteractionDetector
+@onready var sprite: Sprite2D = get_node_or_null("Sprite2D")
 
 
 func _ready() -> void:
@@ -37,6 +38,10 @@ func _physics_process(_delta: float) -> void:
 	# ensuring movement speed is consistent in all directions.
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_direction * speed
+	if velocity.x < -1.0 and sprite:
+		sprite.flip_h = true
+	elif velocity.x > 1.0 and sprite:
+		sprite.flip_h = false
 	move_and_slide()
 	_update_interactable_focus()
 

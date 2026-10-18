@@ -42,8 +42,9 @@ func interact(player: Node) -> void:
 		return
 
 	is_collected = true
-	interaction_area.set_deferred("monitoring", false)
-	interaction_area.set_deferred("monitorable", false)
+	if interaction_area:
+		interaction_area.set_deferred("monitoring", false)
+		interaction_area.set_deferred("monitorable", false)
 
 	# Notify listeners
 	collected.emit(self)

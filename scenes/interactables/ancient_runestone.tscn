@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/interactables/ancient_runestone.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/interactables/runestone_ancient.png" id="2_texture"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_base"]
 size = Vector2(32, 16)
@@ -21,32 +22,24 @@ shape = SubResource("RectangleShape2D_base")
 
 [node name="Visuals" type="Node2D" parent="."]
 
-[node name="BasePlinth" type="Polygon2D" parent="Visuals"]
-color = Color(0.32, 0.36, 0.34, 1)
-polygon = PackedVector2Array(-20, 0, 0, 8, 20, 0, 16, -16, -16, -16)
-
-[node name="ObeliskBody" type="Polygon2D" parent="Visuals"]
-color = Color(0.4, 0.45, 0.42, 1)
-polygon = PackedVector2Array(-14, -16, 0, -9, 14, -16, 8, -70, 0, -78, -8, -70)
-
-[node name="MossDetail" type="Polygon2D" parent="Visuals"]
-color = Color(0.22, 0.35, 0.22, 0.9)
-polygon = PackedVector2Array(-12, -20, -4, -22, -6, -34, -12, -32)
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -48)
+texture = ExtResource("2_texture")
 
 [node name="Runes" type="Polygon2D" parent="Visuals"]
-color = Color(0.55, 0.9, 0.95, 1)
-polygon = PackedVector2Array(-2, -26, 2, -26, 0, -32, 4, -38, 1, -44, 0, -56, -3, -48, -1, -40)
+color = Color(0.55, 0.92, 0.96, 1)
+polygon = PackedVector2Array(-2, -34, 2, -34, 1, -44, 4, -50, 0, -58, -3, -50, 0, -44)
 
 [node name="SoulParticles" type="CPUParticles2D" parent="Visuals"]
-position = Vector2(0, -40)
-amount = 8
-lifetime = 2.0
+position = Vector2(0, -44)
+amount = 10
+lifetime = 2.2
 emission_shape = 1
 emission_sphere_radius = 16.0
-gravity = Vector2(0, -15)
-scale_amount_min = 1.5
-scale_amount_max = 3.0
-color = Color(0.45, 0.85, 0.95, 0.6)
+gravity = Vector2(0, -14)
+scale_amount_min = 1.8
+scale_amount_max = 3.2
+color = Color(0.45, 0.88, 0.95, 0.65)
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 4

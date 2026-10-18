@@ -9,7 +9,7 @@
 - **Engine:** Godot 4.7.2 (Official Stable).
 - **Renderer:** Compatibility (`gl_compatibility`).
 - **Main Scene:** `res://scenes/world.tscn`.
-- **Phase:** Phase 4 (The Cabin, The Stranger & The First Encounter) validated.
+- **Phase:** Phase 5 (Art Direction, Asset Pipeline & Visual Overhaul) validated.
 
 ## Project Structure
 
@@ -19,15 +19,21 @@ zoraveth/
 ├── README.md                  # Project overview and navigation
 ├── LICENSE                    # Apache 2.0 open-source license
 ├── project.godot              # Godot 4.7 engine configuration
+├── assets/                    # Handcrafted 2D sprite textures (PNG)
+│   ├── characters/            # Player and Elderly Stranger sprites
+│   ├── environment/           # Pine trees, ancient trees, rocks, cabin exterior
+│   └── interactables/         # Moonleaf herbs and ancient runestone
+├── docs/                      # World lore, design docs, art direction & decisions
 ├── scenes/
 │   ├── world.tscn             # Project main scene (First Forest & Cabin encounter)
 │   ├── player/
 │   │   └── player.tscn        # Reusable Player CharacterBody2D scene
 │   ├── environment/
 │   │   ├── cabin_exterior.tscn# Sortable CabinExterior scene with smoke chimney
-│   │   ├── tree.tscn          # Sortable IsometricTree scene
+│   │   ├── tree.tscn          # Sortable IsometricTree scene (Pine)
+│   │   ├── tree_ancient.tscn  # Sortable Ancient Tree scene (Landmark)
 │   │   ├── pillar.tscn        # Sortable IsometricPillar scene
-│   │   ├── rock.tscn          # Sortable ForestRock scene
+│   │   ├── rock.tscn          # Sortable ForestRock scene (Mossy)
 │   │   └── bush.tscn          # Ambient swaying ForestBush scene
 │   ├── interior/
 │   │   └── cabin_interior.tscn# Cozy isometric cabin interior with fireplace & bed

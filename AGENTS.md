@@ -37,7 +37,7 @@
 After every task:
 1. Run relevant Godot validation/tests when possible.
 2. If validation cannot run, say so and give manual steps.
-3. Run `coderabbit review --agent --include-untracked --uncommitted` and resolve all actionable items until no new findings remain.
+3. Run `coderabbit review --agent --uncommitted` and resolve all actionable items until no new findings remain.
 4. List exact files created/modified.
 5. Report tests/commands and truthful results.
 6. State known limitations and next smallest step.

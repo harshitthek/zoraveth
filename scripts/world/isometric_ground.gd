@@ -68,11 +68,17 @@ var _path_waypoints: Array[Vector2] = [
 func _draw() -> void:
 	var half_w: float = tile_width * 0.5
 	var half_h: float = tile_height * 0.5
+	var grass_palette: Array[Color] = [
+		tile_color_a.darkened(0.06),
+		tile_color_a,
+		tile_color_b,
+		tile_color_b.lightened(0.06)
+	]
 
 	for gy in range(grid_size.y):
 		for gx in range(grid_size.x):
 			var tile_coord: Vector2 = Vector2(gx, gy)
-			var is_path_tile: bool = _is_near_path(tile_coord, 1.4)
+			var path_dist: float = _get_min_path_dist(tile_coord)
 
 			var cx: float = grid_origin.x + (float(gx) - float(gy)) * half_w
 			var cy: float = grid_origin.y + (float(gx) + float(gy)) * half_h
@@ -83,25 +89,37 @@ func _draw() -> void:
 			var left: Vector2 = Vector2(cx - half_w, cy)
 
 			var poly: PackedVector2Array = PackedVector2Array([top, right, bottom, left])
-			var is_even: bool = (gx + gy) % 2 == 0
+			var seed_val: int = (gx * 17 + gy * 31) ^ (gx * 7)
 
 			var fill_color: Color
-			if is_path_tile:
-				fill_color = path_color_a if is_even else path_color_b
+			if path_dist <= 0.85:
+				fill_color = path_color_a if (seed_val % 2 == 0) else path_color_b
+			elif path_dist <= 1.4:
+				fill_color = Color(0.21, 0.25, 0.18, 1.0) if (seed_val % 2 == 0) else Color(0.23, 0.27, 0.19, 1.0)
 			else:
-				fill_color = tile_color_a if is_even else tile_color_b
+				var tone_idx: int = absi(seed_val) % grass_palette.size()
+				fill_color = grass_palette[tone_idx]
 
 			draw_colored_polygon(poly, fill_color)
-			draw_polyline(PackedVector2Array([top, right, bottom, left, top]), grid_line_color, 1.0)
+
+			# Subtle painterly micro-details
+			if path_dist <= 0.85:
+				if (seed_val % 3 == 0):
+					draw_circle(Vector2(cx + 2.0, cy - 1.0), 1.2, Color(0.38, 0.35, 0.26, 0.6))
+			elif path_dist > 1.4 and (seed_val % 4 == 0):
+				draw_line(Vector2(cx - 2.0, cy), Vector2(cx - 3.0, cy - 3.5), Color(0.28, 0.42, 0.30, 0.6), 1.0)
+				draw_line(Vector2(cx + 1.0, cy), Vector2(cx + 3.0, cy - 4.0), Color(0.25, 0.38, 0.27, 0.6), 1.0)
 
 
-func _is_near_path(pt: Vector2, threshold: float) -> bool:
+func _get_min_path_dist(pt: Vector2) -> float:
+	var min_dist: float = INF
 	for i in range(_path_waypoints.size() - 1):
 		var p1: Vector2 = _path_waypoints[i]
 		var p2: Vector2 = _path_waypoints[i + 1]
-		if _dist_to_segment(pt, p1, p2) <= threshold:
-			return true
-	return false
+		var d: float = _dist_to_segment(pt, p1, p2)
+		if d < min_dist:
+			min_dist = d
+	return min_dist
 
 
 func _dist_to_segment(p: Vector2, a: Vector2, b: Vector2) -> float:

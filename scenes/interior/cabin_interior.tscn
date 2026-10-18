@@ -73,6 +73,17 @@ position = Vector2(0, -6)
 color = Color(0.96, 0.58, 0.16, 1)
 polygon = PackedVector2Array(-8, 0, -3, -10, 0, -14, 4, -8, 8, 0)
 
+[node name="FireEmbers" type="CPUParticles2D" parent="SortableEntities/Fireplace"]
+position = Vector2(0, -8)
+amount = 6
+lifetime = 1.8
+emission_shape = 1
+emission_sphere_radius = 4.0
+gravity = Vector2(0, -10)
+scale_amount_min = 1.0
+scale_amount_max = 2.5
+color = Color(0.98, 0.72, 0.22, 0.8)
+
 [node name="Bed" type="StaticBody2D" parent="SortableEntities"]
 position = Vector2(430, 145)
 

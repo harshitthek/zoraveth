@@ -1,5 +1,38 @@
 # Changelog
 
+## Phase 5 — Art Direction, Asset Pipeline & Visual Overhaul (2026-10-19)
+- Established Art Direction Guide in `docs/art-direction.md`:
+  - Defined two atmospheric modes: Living World (rich forest greens, warm sunlight, weathered timber) and Forgotten World (ancient basalt, chipped stone, celestial cyan luminescence).
+  - Codified 2:1 isometric diamond scale matrix ($64 \times 32\text{ px}$ tiles), foot-origin $(0, 0)$ anchor convention, and compact ground collision footprints.
+  - Documented UI design system: deep charcoal backgrounds, warm amber headers, cyan accents, high WCAG 2.1 AA contrast.
+- Built Handcrafted Asset Pipeline with 8 core PNG textures in `assets/`:
+  - `assets/environment/tree_pine.png` ($100 \times 150$) with soft shadow and pine needle layers.
+  - `assets/environment/tree_ancient.png` ($140 \times 180$) towering mossy broadleaf for key landmarks.
+  - `assets/environment/rock_mossy.png` ($52 \times 40$) multi-faceted boulder with overgrown lichen.
+  - `assets/environment/cabin_exterior.png` ($168 \times 136$) weathered logs, shingle roof, stone chimney, and warm doorway.
+  - `assets/interactables/runestone_ancient.png` ($54 \times 96$) chipped basalt monolith with inscribed glyphs.
+  - `assets/interactables/moonleaf_herb.png` ($32 \times 32$) glowing turquoise botanical specimen.
+  - `assets/characters/elderly_stranger.png` ($38 \times 52$) sage cloak, wool tunic, silver beard, walking staff.
+  - `assets/characters/player.png` ($32 \times 48$) traveler tunic, leather mantle, and boots.
+- Recorded license entries in `docs/asset-licenses.md` under Apache License 2.0.
+- Overhauled Terrain Renderer in `res://scripts/world/isometric_ground.gd`:
+  - Upgraded to organic multi-toned grass palettes with deterministic hash variation.
+  - Added soft blended path transitions and scattered micro-details (grass blade tufts, gravel specks).
+  - Removed harsh polygon wireframe outlines while keeping code $<150\text{ LOC}$.
+- Upgraded Environment & Gameplay Scenes:
+  - `res://scenes/environment/tree.tscn`: Uses `tree_pine.png` with compact trunk collision.
+  - `res://scenes/environment/tree_ancient.tscn`: New landmark tree with `tree_ancient.png`.
+  - `res://scenes/environment/rock.tscn`: Uses `rock_mossy.png` with base contact collision.
+  - `res://scenes/interactables/moonleaf_herb.tscn`: Uses `moonleaf_herb.png` with biological pulse and harvest shrink.
+  - `res://scenes/interactables/ancient_runestone.tscn`: Uses `runestone_ancient.png` with glowing runes and `CPUParticles2D` soul motes.
+  - `res://scenes/environment/cabin_exterior.tscn`: Uses `cabin_exterior.png` with active chimney smoke particles and doorway trigger.
+  - `res://scenes/interior/cabin_interior.tscn`: Added fireplace ember particles (`CPUParticles2D`) and enhanced warm timber planking.
+  - `res://scenes/npc/elderly_stranger.tscn`: Uses `elderly_stranger.png` with ambient breathing idle.
+  - `res://scenes/player/player.tscn`: Uses `player.png` with directional sprite flipping (`flip_h`) on horizontal movement.
+  - `res://scenes/world.tscn`: Integrated 4 ancient trees alongside 23 pine trees to create organic visual pacing.
+- Verified with automated headless test suite (`test_phase5.gd`): verified all 8 textures, foot origins, player movement & directional flip, collisions, gathering, runestone discovery, cabin transitions, stranger dialogue, and world scene integration with 0 failures.
+- Documented technical decision `T-017` in `docs/decisions.md`.
+
 ## Phase 4 — The Cabin, The Stranger & The First Encounter (2026-10-19)
 - Created reusable isometric Cabin Exterior in `res://scenes/environment/cabin_exterior.tscn` and `res://scripts/environment/cabin_exterior.gd`:
   - Timber log walls, shingle/thatch roof, warm amber doorway glow, stone chimney with smoke particles (`CPUParticles2D`), and stacked firewood.
