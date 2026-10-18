@@ -1,0 +1,38 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Export and build outputs
+export.cfg
+export_presets.cfg
+build/
+dist/
+exports/
+
+# IDE and editor temporary files
+.vscode/
+.idea/
+*.tmp
+*.bak
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and crash dumps
+*.log
+*.dmp
+
+# Local environment and secret files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Archives
+*.zip
