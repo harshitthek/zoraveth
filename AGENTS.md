@@ -12,7 +12,7 @@
 - Implement only the current task. Do not build systems merely because they are in the long-term vision.
 - Use APIs supported by the actual Godot version. Do not invent methods, signals, nodes, or settings.
 - Prefer clear typed GDScript where helpful and small focused scenes/scripts.
-- Avoid premature frameworks and giant manager scripts.
+- Avoid premature frameworks and giant manager scripts. Target concise, focused scripts with a flexible guideline of ~200 LOC; allow reasonable flexibility where splitting would harm cohesion.
 - For typical player movement, consider `CharacterBody2D`; validate the approach against the desired coordinate model.
 - Keep gameplay logic, presentation, world simulation, persistence, and networking separable as needs emerge.
 - Do not add plugins, dependencies, downloaded assets, or unrelated project-setting changes without need and approval.
@@ -37,7 +37,7 @@
 After every task:
 1. Run relevant Godot validation/tests when possible.
 2. If validation cannot run, say so and give manual steps.
-3. Run `coderabbit review --agent --uncommitted` and resolve all actionable items until no new findings remain.
+3. Run `coderabbit review --agent --uncommitted` only after substantive code or feature work is completed. Skip CodeRabbit review when changes are strictly limited to documentation (`docs/`), changelogs (`CHANGELOG.md`), or binary/image assets (`.png`). Resolve all actionable items until no new findings remain.
 4. List exact files created/modified.
 5. Report tests/commands and truthful results.
 6. State known limitations and next smallest step.

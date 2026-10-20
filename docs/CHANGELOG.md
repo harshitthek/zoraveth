@@ -17,7 +17,11 @@
 - Herb Count & Exploration Mechanics Verification:
   - Confirmed 4 distinct, reachable Moonleaf Herbs across the map: `HerbEntry` $(420, 540)$, `HerbRoute` $(650, 440)$, `HerbAlcove` $(790, 640)$, and `HerbGrove` $(1360, 580)$.
   - Verified ExplorationUI badge updates accurately from `0 / 4` to `4 / 4` as herbs are gathered.
-- Updated `docs/asset-licenses.md`, `docs/phases.md`, and `README.md`.
+- Cleaned White Background Cutout Artifacts from Tree Sprites:
+  - Removed 358 white and light-grey background pixels trapped in internal branch gaps and canopy pockets of `tree_ancient.png`, eliminating glaring white background patches behind tree branches.
+  - Softened and blended root fringe pixels on `tree_ancient.png` to rich mossy bark.
+  - Cleaned stray bright pixels from `tree_pine.png` and verified clean alpha transparency in live graphical captures.
+- Updated `AGENTS.md`, `docs/decisions.md` (T-018: flexible ~200 LOC script guideline, conditional CodeRabbit execution), `docs/asset-licenses.md`, `docs/phases.md`, and `README.md`.
 - Validated via automated test suite (`tests/test_phase5_3_full.gd`) with 0 errors across 9 textures, 14 scene instantiations, 4/4 herb collections, runestone discovery, and cabin transitions.
 
 ## Phase 5.2 — Terrain Rework & Environment Composition (2026-10-19)
