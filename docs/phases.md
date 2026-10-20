@@ -69,6 +69,17 @@ No fixed dates. Complete and validate each phase before expanding scope.
 - [x] Full simulation test suite passed with 0 errors (`test_phase5_2_full.gd`).
 **Done when:** the forest environment is naturally composed with seamless terrain, continuous winding dirt paths, and cohesive painterly assets. (Completed and validated).
 
+## Phase 5.3 — Natural paths, visual breathing room & landmark composition
+- [x] Eliminate the raised-platform path appearance: replace rigid polygonal vector stroke ribbons with soft, multi-pass cubic spline interpolated worn-soil footpaths (`_draw_embedded_path`).
+- [x] Establish spatial density zoning: Zone A (serene painterly meadow turf `terrain_meadow_open.png` base providing negative space), Zone B (transitional glades and canopy shadow pools), and Zone C (rich undergrowth `terrain_forest_floor.png` confined to northern ridge, eastern edge, and southern alcove).
+- [x] Embed trail organically into terrain: multi-pass feathered ground stain, dark loam body, worn footway core, sine harmonic width variation ($16\text{--}24\text{px}$), and natural encroaching grass blades.
+- [x] Recompose Cabin Sanctuary: establish open front yard approach ($40\text{--}50\text{px}$ clearance), move crowding trees and bushes to flanking positions, and connect doorway smoothly to approach trail.
+- [x] Recompose Ancient Discovery Grove: create wide $140\text{px}$ avenue framed by ancient column sentinels, provide $360^\circ$ approach clearance around the weathered stone apron, and establish clear visual focal point.
+- [x] Recompose Woodland Route: create comfortable $100\text{px}$ wide middle-ground walking corridor free of obstacles.
+- [x] Verify herb count and mechanics: confirmed 4 distinct reachable Moonleaf Herbs (`HerbEntry`, `HerbRoute`, `HerbAlcove`, `HerbGrove`) properly tracked in player inventory and ExplorationUI counter badge.
+- [x] Validate via automated test suite (`tests/test_phase5_3_full.gd`): verified all 9 textures, 14 scene instantiations, 4/4 herb collections, runestone discovery, and cabin transitions with exit code 0.
+**Done when:** the forest features organic worn-earth trails embedded into the terrain, distinct zones of visual breathing room and negative space, and deliberate landmark compositions around the cabin and ancient grove. (Completed and validated).
+
 ## Phase 6 — Spellblade foundation
 - [ ] Basic weapon attack.
 - [ ] One elemental sword technique.

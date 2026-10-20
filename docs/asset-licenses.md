@@ -18,6 +18,8 @@ This document tracks all art, audio, font, and third-party assets used in Zorave
 | `res://assets/environment/bush_forest.png` | Project Original | Zoraveth Project | Apache 2.0 | No | Active Production | Painterly wild blackberry and fern foliage bush sprite |
 | `res://assets/environment/pillar_ancient.png` | Project Original | Zoraveth Project | Apache 2.0 | No | Active Production | Weathered chipped basalt stone pillar with moss and rune crack |
 | `res://assets/environment/terrain_forest_floor.png` | Project Original | Zoraveth Project | Apache 2.0 | No | Active Production | Seamless painterly forest floor ground texture with moss and loam |
+| `res://assets/environment/terrain_meadow_open.png` | Project Original | Zoraveth Project | Apache 2.0 | No | Active Production | Seamless calm painterly meadow turf base texture for negative space |
+| `res://assets/environment/terrain_trail_dirt.png` | Project Original | Zoraveth Project | Apache 2.0 | No | Active Production | Seamless worn compacted earth forest trail texture |
 
 ## Licensing Rules
 

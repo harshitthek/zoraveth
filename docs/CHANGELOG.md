@@ -1,5 +1,25 @@
 # Changelog
 
+## Phase 5.3 — Natural Paths, Visual Breathing Room & Landmark Composition (2026-10-20)
+- Eliminated Raised-Platform Appearance of Paths in `res://scripts/world/isometric_ground.gd`:
+  - Replaced rigid, polygonal `draw_polyline` strokes with soft, cubic spline interpolated (`cubic_interpolate`) organic trail rendering (`_draw_embedded_path`).
+  - Implemented 3-pass feathered alpha blending: wide feathered ground stain ($w \times 0.95$), compacted loam body ($w \times 0.65$), and subtle central worn treadway ($w \times 0.35$).
+  - Added spatial sine harmonic width variation ($16\text{--}24\text{px}$) and organic edge grass blades encroaching along margins, completely eliminating hard straight borders and visible polygonal miter seams.
+  - Retained script under `/usemax` constraints at 136 LOC (< 150 LOC).
+- Implemented 3-Tier Spatial Density Zoning:
+  - **Zone A (Open Ground / Negative Space):** Integrated seamless painterly meadow turf (`terrain_meadow_open.png`, $512 \times 512\text{ px}$) as the base ground canvas across the entire world, creating clean, serene clearings with ample visual breathing room.
+  - **Zone B (Transitional Glades & Lighting):** Added soft atmospheric glade lighting and canopy shadow polygons for depth.
+  - **Zone C (Dense Woodland Undergrowth):** Confined high-contrast detailed undergrowth (`terrain_forest_floor.png`) specifically to the northern ridge backdrop ($Y < 310$), eastern edge, and southern alcove where tree canopies cluster.
+- Recomposed Environmental Landmarks & Visual Flow in `res://scenes/world.tscn`:
+  - **Cabin Sanctuary:** Cleared an open front approach yard ($40\text{--}50\text{px}$ clearance) in front of the porch; relocated crowding trees and bushes to flanking wall lines; connected porch steps directly to the secondary trail branch.
+  - **Ancient Discovery Grove:** Transformed the runestone into the clear destination landmark; framed the approach avenue with ancient column sentinels spaced $140\text{px}$ apart; removed crowding bushes for $360^\circ$ approach clearance around the weathered stone apron.
+  - **Woodland Route:** Opened a generous $100\text{px}$ wide middle-ground walking corridor ($Y \in [470, 570]$) free of collision obstacles.
+- Herb Count & Exploration Mechanics Verification:
+  - Confirmed 4 distinct, reachable Moonleaf Herbs across the map: `HerbEntry` $(420, 540)$, `HerbRoute` $(650, 440)$, `HerbAlcove` $(790, 640)$, and `HerbGrove` $(1360, 580)$.
+  - Verified ExplorationUI badge updates accurately from `0 / 4` to `4 / 4` as herbs are gathered.
+- Updated `docs/asset-licenses.md`, `docs/phases.md`, and `README.md`.
+- Validated via automated test suite (`tests/test_phase5_3_full.gd`) with 0 errors across 9 textures, 14 scene instantiations, 4/4 herb collections, runestone discovery, and cabin transitions.
+
 ## Phase 5.2 — Terrain Rework & Environment Composition (2026-10-19)
 - Overhauled Ground Rendering System in `res://scripts/world/isometric_ground.gd`:
   - Replaced discrete diamond tile polygons with continuous seamless painterly forest floor canvas (`terrain_forest_floor.png`, $512 \times 512\text{ px}$) covering the entire $1800 \times 1000$ world, completely eliminating geometric seams and diamond borders.
