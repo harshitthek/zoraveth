@@ -13,6 +13,7 @@ extends Node2D
 @onready var transition_rect: ColorRect = $TransitionOverlay/ColorRect
 
 var _is_transitioning: bool = false
+var _forest_camera_zoom: Vector2 = Vector2.ONE
 
 
 func _ready() -> void:
@@ -40,6 +41,11 @@ func _ready() -> void:
 		cabin_interior.exit_requested.connect(_on_cabin_exit_requested)
 		if cabin_interior.stranger:
 			cabin_interior.stranger.dialogue_requested.connect(_on_stranger_dialogue_requested)
+
+	if player:
+		var initial_camera: Camera2D = player.get_node_or_null("Camera2D")
+		if initial_camera:
+			_forest_camera_zoom = initial_camera.zoom
 
 	_apply_forest_camera_limits()
 
@@ -113,6 +119,7 @@ func _fade_transition(midpoint_action: Callable) -> void:
 func _apply_forest_camera_limits() -> void:
 	var camera: Camera2D = player.get_node_or_null("Camera2D")
 	if camera:
+		camera.zoom = _forest_camera_zoom
 		camera.limit_left = 60
 		camera.limit_top = 80
 		camera.limit_right = 1600
@@ -122,7 +129,9 @@ func _apply_forest_camera_limits() -> void:
 func _apply_cabin_camera_limits() -> void:
 	var camera: Camera2D = player.get_node_or_null("Camera2D")
 	if camera:
-		camera.limit_left = 40
-		camera.limit_top = -20
-		camera.limit_right = 560
-		camera.limit_bottom = 380
+		_forest_camera_zoom = camera.zoom
+		camera.zoom = Vector2(1.75, 1.75)
+		camera.limit_left = -60
+		camera.limit_top = -60
+		camera.limit_right = 660
+		camera.limit_bottom = 360

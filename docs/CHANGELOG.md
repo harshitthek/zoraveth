@@ -1,5 +1,36 @@
 # Changelog
 
+## Phase 5.4 — Cabin Interior Art Overhaul & Immersive Safe-Haven Design (2026-10-20)
+- Overhauled Cabin Interior Architectural Surfaces in `res://scenes/interior/cabin_interior.tscn`:
+  - Replaced primitive polygon geometry with a unified, full-bleed 2D isometric master environment (`cabin_room_full.png`, $720 \times 420\text{ px}$) framing the entire room seamlessly across $[-60, -60, 660, 360]$.
+  - Embedded the timber bay window directly into the east chinked log wall with morning woodland sunlight streaming across the floorboards.
+  - Built the fieldstone hearth and stone chimney directly into the back-left wall structure, piercing through the overhead roof rafters.
+  - Added foreground overhead timber tie-beams and hanging herb bundles (`cabin_overhead_rafters.png`, $720 \times 420\text{ px}$) rendered with $Z = 5$ to establish genuine visual depth.
+- Camera & Framing Improvements:
+  - Centered room framing with $1.75\times$ zoom and bounds $[-60, -60, 660, 360]$ in `scripts/world/forest_world.gd`, allowing the room to fill the screen intimately without clipping or off-center clamping.
+  - Expanded dark ambient backdrop to eliminate any visible engine clear color margins.
+- Handcrafted Painterly Furniture & Depth-Sorted Entity Architecture:
+  - **Work & Scholar Table:** Sturdy oak refectory table with unrolled botanical map, inkwell, quill, and clay mug, featuring a dedicated Y-sorted foreground cutout (`cabin_table_cutout.png`, $247 \times 184\text{ px}$) that occludes the player's lower body when walking behind it.
+  - **Hearth & Fireplace:** Fieldstone fireplace with timber mantel, iron kettle, glowing embers, CPUParticles2D sparks, and harmonic flame flicker.
+  - **Resting Nook:** Hand-carved rustic timber bed with folded rust/sage woolen quilt, linen pillow, and foot-bench tucked under the bay window alcove.
+  - **Bookshelf & Cupboard:** Weathered pine bookcase with ancient leatherbound tomes, rolled scrolls, and earthenware jars.
+  - **Floor Rug & Entryway:** Concentric braided oval wool hearth rug, woven threshold doormat, and traveler's boots.
+- Depth Sorting & Collision Footprint Separation:
+  - Maintained `CanvasItem.y_sort_enabled = true` on `SortableEntities`.
+  - Implemented airtight room boundary perimeter polygon `(78, 195) -> (440, 195) -> (440, 320) -> (490, 345) -> (640, 345) -> (640, 355) -> (78, 355)` stopping penetration into walls, chimney, or void.
+  - Anchored table collision at ground contact ($40\text{ px}$ height) leaving clear passage along the upper side of the room.
+- Atmosphere & Lighting:
+  - Added subtle dynamic hearth warmth aura (`HearthWarmthAura`) and morning sunbeam shimmer.
+- Design Specification & Documentation:
+  - Authored comprehensive safe-haven art specification in `docs/cabin-interior-art.md`.
+  - Registered 21 interior assets in `docs/asset-licenses.md`.
+  - Recorded technical decision `T-019` in `docs/decisions.md`.
+  - Updated `docs/phases.md` and `README.md`.
+- Testing & Visual Audit:
+  - Validated via automated test suite (`tests/test_phase5_4_full.gd`): verified all 21 textures, scene instantiations, furniture collision footprints, player entry/exit transitions, dialogue generation, and camera bounds with exit code 0.
+  - Captured live graphical screenshots across 4 room views (`audit_cabin_interior_overview.png`, `hearth`, `stranger`, `bed_window`).
+  - Generated visual audit artifact report in `cabin_interior_audit.md`.
+
 ## Phase 5.3 — Natural Paths, Visual Breathing Room & Landmark Composition (2026-10-20)
 - Eliminated Raised-Platform Appearance of Paths in `res://scripts/world/isometric_ground.gd`:
   - Replaced rigid, polygonal `draw_polyline` strokes with soft, cubic spline interpolated (`cubic_interpolate`) organic trail rendering (`_draw_embedded_path`).

@@ -80,6 +80,24 @@ No fixed dates. Complete and validate each phase before expanding scope.
 - [x] Validate via automated test suite (`tests/test_phase5_3_full.gd`): verified all 9 textures, 14 scene instantiations, 4/4 herb collections, runestone discovery, and cabin transitions with exit code 0.
 **Done when:** the forest features organic worn-earth trails embedded into the terrain, distinct zones of visual breathing room and negative space, and deliberate landmark compositions around the cabin and ancient grove. (Completed and validated).
 
+## Phase 5.4 — Cabin interior art overhaul & safe-haven design
+- [x] Create architectural and artistic design specification in `docs/cabin-interior-art.md` establishing the cabin as a warm, inhabited safe-haven matching the exterior timber aesthetic.
+- [x] Replace primitive polygon shapes with handcrafted 2D isometric master environment and layered props:
+  - Unified full-bleed 2D isometric cabin room environment (`cabin_room_full.png`, $720 \times 420\text{ px}$) framing the entire room seamlessly.
+  - Multi-pane timber bay window embedded directly into the east log wall with streaming morning woodland sunbeams.
+  - Built-in dry-stacked fieldstone fireplace with vertical chimney piercing overhead ceiling rafters.
+  - Layered foreground overhead timber tie-beams and hanging herb bundles (`cabin_overhead_rafters.png`, $Z = 5$).
+  - Heavy oak refectory table with botanical map, inkwell, and mug with Y-sorted foreground cutout (`cabin_table_cutout.png`).
+  - Handcrafted rustic timber bed with folded rust/sage woolen quilt, linen pillow, and foot-bench.
+  - Weathered pine bookcase and cupboard with ancient tomes, scrolls, jars, and dried herbs.
+  - Concentric braided oval wool hearth rug, woven threshold doormat, and traveler's boots.
+- [x] Ensure exact foot-origin depth sorting (`CanvasItem.y_sort_enabled = true`) and compact base collision footprints across all interior entities.
+- [x] Establish airtight room perimeter collision boundary stopping penetration into log walls, fireplace chimney, or out-of-bounds void.
+- [x] Center camera framing ($1.75\times$ zoom with bounds $[-60, -60, 660, 360]$) and preserve all scene transitions, player reparenting, and dialogue flow with the elderly stranger.
+- [x] Validate via automated test suite (`tests/test_phase5_4_full.gd`) with 0 errors across 21 textures, node graphs, transitions, dialogue, and camera bounds.
+- [x] Capture and visually audit live graphical screenshots (`audit_cabin_interior_overview.png`, `hearth`, `stranger`, `bed_window`).
+**Done when:** the cabin interior is a detailed, warm, believable safe haven with handcrafted painterly artwork, lived-in clutter, and full gameplay preservation. (Completed and validated).
+
 ## Phase 6 — Spellblade foundation
 - [ ] Basic weapon attack.
 - [ ] One elemental sword technique.
