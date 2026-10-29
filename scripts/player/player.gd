@@ -98,10 +98,11 @@ func _update_interactable_focus() -> void:
 	var highest_priority: int = -1
 	var min_dist_sq: float = INF
 
-	var active_list: Array[Node] = []
+	# Prune freed or queued-for-deletion instances
+	_nearby_interactables = _nearby_interactables.filter(func(node: Node) -> bool: return is_instance_valid(node))
+
 	for obj in _nearby_interactables:
-		if is_instance_valid(obj) and obj.has_method("can_interact") and obj.can_interact():
-			active_list.append(obj)
+		if obj.has_method("can_interact") and obj.can_interact():
 			var priority: int = obj.get_interaction_priority() if obj.has_method("get_interaction_priority") else 0
 			var dist_sq: float = global_position.distance_squared_to(obj.global_position)
 
@@ -109,8 +110,6 @@ func _update_interactable_focus() -> void:
 				highest_priority = priority
 				min_dist_sq = dist_sq
 				best_target = obj
-
-	_nearby_interactables = active_list
 
 	if best_target != _current_target:
 		_current_target = best_target

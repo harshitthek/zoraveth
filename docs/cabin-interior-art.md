@@ -27,9 +27,9 @@ The cabin interior is constructed as a **full-screen, immersive pre-rendered mas
      | [Hearth Rug & Fire]|                       |  Bed (520, 310)]   |
      +--------------------+                       +--------------------+
 (-60, 200) West Wall Junc  \                     / (660, 200) East Wall Junc
-     | [Bookshelf (50, 260)]\                   /                      |
+     | [Bookshelf (60, 225)]\                   /                      |
      |                       \  PLAYABLE FLOOR /                       |
-     | [Table (180, 345)]     \               / [Exit Doorway (480,335)]
+     | [Table (155, 358)]     \               / [Exit Doorway (480,335)]
      |                         \             /  [Spawn (440, 290)]     |
 (-60, 360) Bot-Left Floor ----- (300, 360) ----- (660, 360) Bot-Right Floor
 ```
@@ -63,10 +63,10 @@ Every item in the cabin is solidly grounded in the master environment with exact
 | Stranger (245, 215)                                                     |
 +-------------------------------------------------------------------------+
 | [Storage Nook]                               [Entryway Foyer]           |
-| Bookshelf (8, 175)                           Spawn Position (380, 280)  |
+| Bookshelf (60, 225)                          Spawn Position (380, 280)  |
 |                                              Exit Doorway (480, 335)    |
 | [Study / Work Area]                          Threshold Mat & Boots      |
-| Oak Table & Chairs (185, 335)                                           |
+| Oak Table & Chairs (155, 358)                                           |
 | Maps, Inkpot, Mug                                                       |
 +-------------------------------------------------------------------------+
 ```
@@ -77,16 +77,20 @@ Every item in the cabin is solidly grounded in the master environment with exact
 - **Accessories:** Concentric braided oval wool hearth rug on the floorboards; hearthside chair with sleeping cat at $(150, 215)$; firewood basket and barrels at $(310, 165)$.
 - **Elderly Stranger:** Positioned warmly at $(245, 215)$ standing on the hearth rug facing the entrance, ready to greet the arriving traveler.
 
-### 3.2 Zone 2: Storage & Apothecary (West Wall, $(8, 175)$)
-- **Bookshelf:** Sturdy dark cedar bookshelf resting flush against the left wall, filled with ancient leatherbound tomes, rolled scrolls, and apothecary jars.
+### 3.2 Zone 2: Storage & Apothecary (West Wall, $(60, 225)$)
+- **Bookshelf:** Sturdy dark cedar bookshelf resting flush against the west wall (spanning $X \in [0, 120]$ and $Y \in [185, 265]$ with center anchor at $(60, 225)$), filled with ancient leatherbound tomes, rolled scrolls, and apothecary jars. The `StaticBody2D` collision shape sized at $(120, 80)\text{ px}$ firmly blocks clipping into the wooden frame.
+- **Inspection Interaction:** Approaching the bookshelf at $(135, 225)$ on the open floorboards displays `[E] Inspect Bookshelf` via an `InteractionArea` centered at $(135, 225)$ ($X = 60 + 75, Y = 225 + 0$) with radius $40\text{ px}$. Interacting opens narrative thought dialogue where the traveler notes: *"Interesting... The weathered leather bindings hold notes on regional flora, celestial charting, and strange geological fissures."* and unlocks the *"Elderly Stranger's Bookshelf"* exploration clue card.
 - **Ceiling Storage:** Bundles of wild sage and medicinal herbs drying from the overhead ceiling beams.
 
 ### 3.3 Zone 3: Sleeping Alcove (East Wall, $(530, 245)$)
 - **Timber Bed:** Solid cedar bedstead with rust-and-sage patchwork quilt, folded wool blankets, linen pillow, and foot-bench, set along the right wall.
+- **Resting Interaction:** Approaching the bedside at $(425, 265)$ displays `[E] Rest in Bed`. Interacting smoothly tweens the player onto the mattress at $(530, 240)$, rotates the character sprite by $-60.0^\circ$ along the isometric quilt axis, hides the ground shadow, disables foot collision, and plays subtle breathing animation while delivering cozy narrative thought dialogue.
+- **Getting Up:** While resting, the interaction prompt switches to `[E] Get Up`. Pressing `[E]`, `[Space]`, or any WASD movement key smoothly tweens the player back to bedside $(425, 265)$, resets character rotation to $0.0^\circ$, restores shadow and collision, and unlocks movement.
 - **Bay Window & Bench:** Multi-pane lattice bay window embedded in the right wall above a cushioned window bench, bathing the room in soft morning woodland light with gentle dynamic shimmer.
 
-### 3.4 Zone 4: Study & Work Area (Foreground-Left, $(185, 335)$)
+### 3.4 Zone 4: Study & Work Area (Foreground-Left, $(155, 358)$)
 - **Work Table & Chairs:** Heavy oak refectory table with botanical sketches, regional parchment map, stoneware inkpot, quill, leather satchel, and clay tea mug.
+- **Y-Sorted Table Cutout:** Dedicated $247 \times 184\text{ px}$ cutout (`cabin_table_cutout.png`) precisely masks the table, accessories, and legs while maintaining transparent clearance for the walkway behind the table so the player is fully visible when standing at the bookshelf.
 
 ### 3.5 Zone 5: Entryway Foyer (Southeast, $(480, 335)$)
 - **Doorway Threshold:** Timber door sill with coarse woven doormat and muddy travel boots.

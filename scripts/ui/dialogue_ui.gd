@@ -27,6 +27,10 @@ func _ready() -> void:
 	choice_b_btn.pressed.connect(_on_choice_b_selected)
 
 
+func is_active() -> bool:
+	return _is_active
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not _is_active:
 		return

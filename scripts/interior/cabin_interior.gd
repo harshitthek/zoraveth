@@ -4,6 +4,9 @@ extends Node2D
 ## Emitted when player requests to leave the cabin through the entrance doorway.
 signal exit_requested(player: CharacterBody2D)
 
+## Emitted when an interior entity (stranger, bookshelf, bed) requests dialogue.
+signal dialogue_requested(sequence: Array[Dictionary], player: CharacterBody2D)
+
 @export var spawn_position: Vector2 = Vector2(380, 280)
 
 @onready var hearth_fire: Polygon2D = $SortableEntities/Fireplace/FireGlow
@@ -12,6 +15,8 @@ signal exit_requested(player: CharacterBody2D)
 @onready var exit_area: Area2D = $ExitDoorway
 @onready var sortable_entities: Node2D = $SortableEntities
 @onready var stranger: StaticBody2D = $SortableEntities/ElderlyStranger
+@onready var bookshelf: StaticBody2D = $SortableEntities/Bookshelf
+@onready var bed: StaticBody2D = $SortableEntities/Bed
 
 var _fire_timer: float = 0.0
 
@@ -19,6 +24,17 @@ var _fire_timer: float = 0.0
 func _ready() -> void:
 	if exit_area:
 		exit_area.set_meta("interaction_label", "[E] Exit to Forest")
+
+	if stranger and stranger.has_signal("dialogue_requested"):
+		stranger.dialogue_requested.connect(_on_child_dialogue_requested)
+	if bookshelf and bookshelf.has_signal("dialogue_requested"):
+		bookshelf.dialogue_requested.connect(_on_child_dialogue_requested)
+	if bed and bed.has_signal("dialogue_requested"):
+		bed.dialogue_requested.connect(_on_child_dialogue_requested)
+
+
+func _on_child_dialogue_requested(sequence: Array[Dictionary], player: CharacterBody2D) -> void:
+	dialogue_requested.emit(sequence, player)
 
 
 func _process(delta: float) -> void:

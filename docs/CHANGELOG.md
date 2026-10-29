@@ -1,5 +1,29 @@
 # Changelog
 
+## Cabin Bookshelf Inspection & Bed Resting Mechanics (2026-10-29)
+- Added Interactive Bookshelf Component (`scripts/interior/cabin_bookshelf.gd`):
+  - Implements interactable API (`can_interact()`, `get_interaction_label()`, `get_interaction_priority()`, `interact(player)`).
+  - Approaching bookshelf at $(135, 225)$ displays `[E] Inspect Bookshelf`.
+  - Emits dialogue starting with `"Interesting..."` detailing regional flora, celestial charting, and dormant conduit networks beneath forest roots.
+  - Emits clue discovery signal for `ExplorationUI` card *"Elderly Stranger's Bookshelf"*.
+- Added Interactive Bed Component (`scripts/interior/cabin_bed.gd`):
+  - Approaching bed at $(425, 265)$ displays `[E] Rest in Bed`.
+  - Interacting smoothly transitions the player onto the mattress at $(530, 240)$ with $-60.0^\circ$ isometric rotation matching the patchwork quilt angle.
+  - Hides player shadow, disables collision, and runs resting breathing animation.
+  - Triggers cozy narrative thought dialogue on resting.
+  - Switches prompt to `[E] Get Up` while resting.
+  - Smoothly gets up to bedside $(425, 265)$ on `[E]`, `[Space]`, or any WASD movement key, restoring upright rotation, shadow, collision, and player mobility.
+- Cabin Interior Scene Graph & Y-Sorting Refinements (`scenes/interior/cabin_interior.tscn`):
+  - Attached `CabinBookshelf` script and configured interaction area.
+  - Attached `CabinBed` script and expanded interaction area radius to $70\text{ px}$ covering both bedside approach and resting positions.
+  - Updated `cabin_table_cutout.png` to cleanly mask the refectory table without false occlusion of the rear floor walkway.
+  - Wired interior entity dialogue requests (`stranger`, `bookshelf`, `bed`) through unified `CabinInterior.dialogue_requested` relay to `ForestWorld` and `DialogueUI`.
+- Player Interaction Focus Fix (`scripts/player/player.gd`):
+  - Fixed `_nearby_interactables` list from prematurely discarding entities with temporary `can_interact() == false` states, ensuring smooth prompt updates when transitioning or resting.
+- Automated Test Suite & Visual Verification:
+  - Added comprehensive automated test suite `tests/test_cabin_interactions.gd` covering all 4 interaction phases with exit code 0.
+  - Created automated screenshot capture script `tests/capture_cabin_interactions.gd` and validated visual quality across 5 in-engine captures.
+
 ## Phase 5.4 — Cabin Interior Art Overhaul & Immersive Safe-Haven Design (2026-10-20)
 - Overhauled Cabin Interior Architectural Surfaces in `res://scenes/interior/cabin_interior.tscn`:
   - Replaced primitive polygon geometry with a unified, full-bleed 2D isometric master environment (`cabin_room_full.png`, $720 \times 420\text{ px}$) framing the entire room seamlessly across $[-60, -60, 660, 360]$.

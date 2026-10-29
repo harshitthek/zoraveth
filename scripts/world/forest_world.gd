@@ -39,8 +39,7 @@ func _ready() -> void:
 		cabin_interior.visible = false
 		cabin_interior.process_mode = Node.PROCESS_MODE_DISABLED
 		cabin_interior.exit_requested.connect(_on_cabin_exit_requested)
-		if cabin_interior.stranger:
-			cabin_interior.stranger.dialogue_requested.connect(_on_stranger_dialogue_requested)
+		cabin_interior.dialogue_requested.connect(_on_stranger_dialogue_requested)
 
 	if player:
 		var initial_camera: Camera2D = player.get_node_or_null("Camera2D")

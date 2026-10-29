@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://scripts/interior/cabin_interior.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://scenes/npc/elderly_stranger.tscn" id="2_stranger"]
 [ext_resource type="Texture2D" path="res://assets/interior/cabin_room_full.png" id="3_room_bg"]
 [ext_resource type="Texture2D" path="res://assets/interior/cabin_table_cutout.png" id="4_table_cutout"]
 [ext_resource type="Texture2D" path="res://assets/interior/cabin_overhead_rafters.png" id="5_rafters"]
+[ext_resource type="Script" path="res://scripts/interior/cabin_bookshelf.gd" id="6_bookshelf_script"]
+[ext_resource type="Script" path="res://scripts/interior/cabin_bed.gd" id="7_bed_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fireplace"]
 size = Vector2(130, 70)
@@ -16,10 +18,16 @@ size = Vector2(120, 55)
 size = Vector2(36, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shelf"]
-size = Vector2(135, 190)
+size = Vector2(120, 80)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shelf_interaction"]
+radius = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bed"]
 size = Vector2(170, 110)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bed_interaction"]
+radius = 70.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_table"]
 size = Vector2(180, 40)
@@ -86,10 +94,19 @@ position = Vector2(310, 165)
 shape = SubResource("RectangleShape2D_baskets")
 
 [node name="Bookshelf" type="StaticBody2D" parent="SortableEntities"]
-position = Vector2(8, 175)
+position = Vector2(60, 225)
+script = ExtResource("6_bookshelf_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SortableEntities/Bookshelf"]
 shape = SubResource("RectangleShape2D_shelf")
+
+[node name="InteractionArea" type="Area2D" parent="SortableEntities/Bookshelf"]
+position = Vector2(75, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SortableEntities/Bookshelf/InteractionArea"]
+shape = SubResource("CircleShape2D_shelf_interaction")
 
 [node name="LanternStool" type="StaticBody2D" parent="SortableEntities"]
 position = Vector2(150, 215)
@@ -99,9 +116,18 @@ shape = SubResource("RectangleShape2D_stool")
 
 [node name="Bed" type="StaticBody2D" parent="SortableEntities"]
 position = Vector2(530, 245)
+script = ExtResource("7_bed_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SortableEntities/Bed"]
 shape = SubResource("RectangleShape2D_bed")
+
+[node name="InteractionArea" type="Area2D" parent="SortableEntities/Bed"]
+position = Vector2(-50, 10)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SortableEntities/Bed/InteractionArea"]
+shape = SubResource("CircleShape2D_bed_interaction")
 
 [node name="TableAndChairs" type="StaticBody2D" parent="SortableEntities"]
 position = Vector2(155, 358)
